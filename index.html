@@ -5,17 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RoHLL ‒ Royal Hospitality Language Learning</title>
   
-  <!-- Google Analytics 4 (GA4) 測定タグエリア -->
-  <!-- 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-  -->
-
   <style>
     :root {
       --bg-color: #f1f5f9;            /* パール系明るいベース背景 */
@@ -77,7 +66,7 @@
       font-size: 0.85rem;
       opacity: 0.95;
       font-weight: 600;
-      color: #fef3c7; /* 薄いゴールド */
+      color: #fef3c7;
     }
     .progress-bar-container {
       height: 6px;
@@ -86,7 +75,7 @@
     }
     .progress-bar {
       height: 100%;
-      background: var(--accent); /* シャンパンゴールド/アンバー */
+      background: var(--accent);
       width: 0%;
       transition: width 0.3s ease;
     }
@@ -318,7 +307,7 @@
       border-radius: 6px;
       font-size: 0.85rem;
       display: none;
-      line-height: 1.4;
+      line-height: 1.5;
     }
     .recognition-result-box.success {
       background: var(--success-bg); border: 1px solid #bbf7d0; color: var(--success-color); display: block;
@@ -331,6 +320,16 @@
       color: var(--text-sub);
       margin-top: 4px;
       font-style: italic;
+    }
+    .recognized-ruby {
+      margin-top: 4px;
+      padding: 4px 8px;
+      background: #ffffff;
+      border-radius: 4px;
+      border: 1px solid #cbd5e0;
+      font-weight: 600;
+      color: #1e3a8a;
+      display: inline-block;
     }
 
     .nav-footer {
@@ -426,11 +425,10 @@
 <body>
 
 <div class="container" id="app"></div>
-
 <div id="modal-container"></div>
 
 <script>
-// 1. フロント全35ステップ (韓国語カタカナルビ全修整・カクテルタイム注意事項Step25移動済み)
+// フロント全35ステップデータ
 const frontSteps = [
   { jp: "こんにちわ（こんばんわ）、いらっしゃいませ。", en: "Good afternoon (or Good evening), and welcome.", zh: "您好（晚上好），欢迎光临！", ko: "안녕하십니까(저녁에는 안녕하십니까), 어서 오십시오.", pinyin: "Nín hǎo (wǎnshang hǎo), huānyíng guānglín!", kana: "ニン ハオ（ワンシャン ハオ）、フアンイン グアンリン！", kanaKo: "アンニョンハシムニカ、オソ オシプシオ。", customerEn: "Hello. I have a reservation.", customerZh: "您好，我预订了房间。", customerKo: "안녕하세요. 예약했습니다.", feedback: "温かい笑顔でお迎えしましょう。" },
   { jp: "チェックインでしょうか？", en: "Are you checking in today?", zh: "您是办理入住吗？", ko: "체크인 하시겠습니까?", pinyin: "Nín shì bànlǐ rùzhù ma?", kana: "ニン シ バンリ ルージュ マ？", kanaKo: "チェクイン ハシゲッスムニカ？", customerEn: "Yes, that's right.", customerZh: "是的，没错。", customerKo: "네, 맞습니다.", feedback: "スムーズなご案内です。" },
@@ -446,7 +444,7 @@ const frontSteps = [
   { jp: "それでは宿泊前精算となりますので駐車料金として1200円頂きます。", en: "As payment is requested in advance, the parking fee will be 1,200 yen, please.", zh: "因为是入住前结算，所以需要收取1200日元的停车费。", ko: "사전 정산이므로 주차 요금으로 1200엔을 받겠습니다.", pinyin: "Yīnwèi shì rùzhù qián jiésuàn...", kana: "インウェイ シ ルージュ チェン ジエスアン...", kanaKo: "サジョン ジョンサニムロ ジュチャ ヨグムロ チョンイベクエンウル パッケッスムニカ。", customerEn: "Here you are. By credit card, please.", customerZh: "给您。请刷信用卡。", customerKo: "여기 있습니다. 신용카드로 부탁드립니다.", feedback: "前精算のご案内です。" },
   { jp: "それでは宿泊前精算となりますので宿泊料、駐車料金と合わせてご案内致します。", en: "As payment is requested in advance, I will guide you with the total amount including the room and parking fee.", zh: "因为是入住前结算，我将为您统一结算房费和停车费。", ko: "사전 정산이므로 숙박비와 주차 요금을 함께 안내해 드리겠습니다.", pinyin: "Yīnwèi shì rùzhù qián jiésuàn...", kana: "インウェイ シ ルージュ チェン ジエスアン...", kanaKo: "サジョン ジョンサニムロ スウクパクビワ ジュチャ ヨグムウル ハンッケ アンネヘ ドゥリゲッスムニダ。", customerEn: "Alright, please go ahead.", customerZh: "好的，请结算吧。", customerKo: "네, 안내해 주세요.", feedback: "合計金額のご案内です。" },
   { jp: "こちらが駐車券です。\nチェックアウトの後にご利用下さい。", en: "Here is your parking ticket.\nPlease use this after you check out.", zh: "这是您的停车券，请在退房之后使用。", ko: "주차권입니다. 체크아웃 후에 사용해 주십시오.", pinyin: "Zhè shì nín de tíngchēquàn...", kana: "ヂェ シ ニン ダ ティンチェチュェン...", kanaKo: "ジュチャグォニムニダ。チェックアウト フエ サヨンヘ ジュシプシオ。", customerEn: "Thank you.", customerZh: "谢谢。", customerKo: "감사합니다.", feedback: "駐車券のお渡しです。" },
-  { jp: "領収証は要りますか？", en: "Will you need a receipt?", zh: "请问您需要收据吗？", ko: "영수증이 필요하십니까?", pinyin: "Qǐngwèn nín xūyào shōujù ma?", kana: "チンウェン ニン シューヤオ ショウヂュ マ？", kanaKo: "ヨンスジュンイ ピリョハシムニカ？", customerEn: "Yes, please.", customerZh: "是的，请给我一张。", customerKo: "네, 부탁드립니다.", feedback: "領収証の有無を確認します。" },
+  { jp: "領収証は要りますか？", en: "Will you need a receipt?", zh: "请问您需要收据吗？", ko: "영수증이必要하십니까?", pinyin: "Qǐngwèn nín xūyào shōujù ma?", kana: "チンウェン ニン シューヤオ ショウヂュ マ？", kanaKo: "ヨンスジュンイ ピリョハシムニカ？", customerEn: "Yes, please.", customerZh: "是的，请给我一张。", customerKo: "네, 부탁드립니다.", feedback: "領収証の有無を確認します。" },
   { jp: "領収証はチェックアウトの時に渡します。", en: "I will hand you the receipt upon check-out.", zh: "收据会在退房时交给您。", ko: "영수증은 체크아웃 하실 때 드리겠습니다.", pinyin: "Shōujù huì zài tuìfáng shí...", kana: "ショウヂュ フゥイ ザイ トゥイファン シ...", kanaKo: "ヨンスジュンウン チェックアウト ハシル テ ドゥリゲッスムニダ。", customerEn: "Okay, thank you.", customerZh: "好的，谢谢。", customerKo: "네, 감사합니다.", feedback: "渡すタイミングのお伝えです。" },
   { jp: "それではこちらに記載の住所、電話番号に間違いが無ければこちらにサインをお願いいたします。", en: "If your address and phone number shown here are correct, please sign here, please.", zh: "请确认这里的地址和电话，没问题的话请在此签字。", ko: "주소와 전화번호가 맞으시면 이곳에 서명해 주십시오.", pinyin: "Qǐng quèrèn zhèlǐ de dìzhǐ...", kana: "チン チュエレン ヂェリ ダ ディージ...", kanaKo: "ジュソワ ジョナボノガ マジュシミョン イゴセ ソミョンヘ ジュシプシオ。", customerEn: "Sure.", customerZh: "好的。", customerKo: "네, 알겠습니다.", feedback: "ご署名をいただくステップです。" },
   { jp: "今回はラウンジ、朝食付きプランでご予約をいただいております。", en: "You have booked a plan that includes lounge access and breakfast.", zh: "您这次预订的是含酒廊和早餐的套餐。", ko: "이번에는 라운지와 조식이 포함된 플랜으로 예약하셨습니다.", pinyin: "Nín zhècì yùdìng de shì...", kana: "ニン ヂェツー ユーディン ダ シ...", kanaKo: "イボネヌン ラウンジワ ジョシギ ポハムデン プルレヌロ イェヤクハシャッスムニダ。", customerEn: "Great, looking forward to it!", customerZh: "太好了，非常期待！", customerKo: "좋네요, 기대됩니다!", feedback: "ワクワクしていただけるご案内です。" },
@@ -456,7 +454,6 @@ const frontSteps = [
   { jp: "15時から17時30分まではティータイムでコーヒー、紅茶、ソフトドリンクや焼き菓子をご用意しています。", en: "From 3:00 PM to 5:30 PM is tea time, offering coffee, tea, soft drinks, and baked sweets.", zh: "15点到17点半是下午茶时间，准备了咖啡、红茶和点心。", ko: "15시부터 17시 30분까지는 티타임입니다.", pinyin: "15 diǎn dào 17 diǎn bàn...", kana: "シーウー ディェン ダオ シーチー ディェン バン...", kanaKo: "エルダソッシブト ニョルイルゴプシ サムシップンッカジヌン ティタイムイムニダ。", customerEn: "Sounds great.", customerZh: "听起来很好。", customerKo: "아주 좋네요.", feedback: "ティータイムのご案内です。" },
   { jp: "17時30分から19時30分まではカクテルタイムでアルコール、ソフトドリンク、軽い前菜をご用意しています。", en: "From 5:30 PM to 7:30 PM is cocktail time, offering alcoholic drinks, soft drinks, and light appetizers.", zh: "17点半到19点半是鸡尾酒时间，准备了酒类和小食。", ko: "17시 30분부터 19시 30분까지는 칵테일 타임입니다.", pinyin: "17 diǎn bàn dào 19 diǎn bàn...", kana: "シーチー ディェン バン ダオ シージウ ディェン バン...", kanaKo: "ニョルイルゴプシ サムシップンッカジヌン カクテル タイムイムニダ。", customerEn: "Good to know.", customerZh: "记下了。", customerKo: "잘 알겠습니다.", feedback: "カクテルタイムのご案内です。" },
   { jp: "19時30分から20時30分まではお休み前のノンカフェインドリンクをご用意しています。", en: "From 7:30 PM to 8:30 PM, we serve decaf drinks for a relaxing bedtime.", zh: "19点半到20点半，我们准备了睡前无咖啡因饮品。", ko: "19시 30분부터 20시 30분까지는 디카페인 음료가 준비됩니다.", pinyin: "19 diǎn bàn dào 20 diǎn bàn...", kana: "シージウ ディェン バン ダオ アーシ ディェン バン...", kanaKo: "ニョルアホプシ サムシップンッカジヌン ディカフェイン ウムリョガ ジュンビデムニダ。", customerEn: "That's very nice.", customerZh: "非常贴心。", customerKo: "세심하네요.", feedback: "ナイトタイムのご案内です。" },
-  /* ★ Step25: カクテルタイム注意事項 ★ */
   { jp: "（カクテルタイムは未就学のお子様は入場が出来ません。）", en: "Please note that preschool children are not permitted during cocktail time.", zh: "请注意，学龄前儿童无法在鸡尾酒时间进入。", ko: "칵테일 타임에는 미취학 아동의 입장이 불가합니다.", pinyin: "Qǐng zhùyì, xuélíngqián értóng...", kana: "チン ヂューイー、シュエリンチェン アートン...", kanaKo: "カクテル タイムエヌン ミチュハク アドングイ イプジャンイ ブルガハムニダ。", customerEn: "Understood.", customerZh: "明白了。", customerKo: "이해했습니다.", feedback: "注意事項のお伝えです。" },
   { jp: "続いて朝食のご案内です。\n入場時間は7時から9時となっております。", en: "Next, regarding breakfast. The opening hours are from 7:00 AM to 9:00 AM.", zh: "接下来是早餐说明。用餐时间为早上7点至9点。", ko: "이어서 조식 안내입니다. 입장 시간은 7시부터 9시까지입니다.", pinyin: "Jiēxiàlái shì zǎocān shuōmíng...", kana: "ジエシァライ シ ザオツァン シュオミン...", kanaKo: "イオソ ジョシク アンネイムニダ。イプジャン シガンウン イルゴプシブト アホプシッカジイムニダ。", customerEn: "Understood.", customerZh: "知道了。", customerKo: "알겠습니다.", feedback: "朝食時間のご案内です。" },
   { jp: "朝食券は発行していないので、会場に入ったら中に居るスタッフにお部屋番号とお名前をお伝えください。", en: "We do not issue breakfast tickets, so please tell the staff inside your room number and name.", zh: "我们不发放早餐券，请直接向入口处的工作人员报房间号和姓名。", ko: "조식권은 발행되지 않으니, 입구 직원에게 방 번호와 성함을 말씀해 주세요.", pinyin: "Wǒmen bù fāfàng zǎocānquàn...", kana: "ウォメン ブ ファファン ザオツァンチュエン...", kanaKo: "ジョシクグォンウン バルヘンデジ アヌニ、イプグ ジグウォネゲ バン ボノワ ソンハムウル マルスムヘ ジュセヨ。", customerEn: "Got it. No paper tickets needed.", customerZh: "好的，不需要纸质券。", customerKo: "네, 방 번호를 말하겠습니다.", feedback: "朝食のご入場方法です。" },
@@ -473,7 +470,7 @@ const frontSteps = [
   { jp: "ご案内は以上です。ごゆっくり過ごして下さい。", en: "That is all for the information. Please enjoy your stay.", zh: "介绍就到这里。祝您入住愉快！", ko: "안내는 여기까지입니다. 편안한 시간 보내십시오.", pinyin: "Jièshào jiù dào zhèlǐ...", kana: "ジエシャオ ジョウ ダオ ヂェリ...", kanaKo: "アンネヌン ヨギッカジイムニダ。ピョナナン シガン ボネシプシオ。", customerEn: "Thank you. Have a good day!", customerZh: "谢谢，祝您愉快！", customerKo: "감사합니다!", feedback: "温かいお見送りです！" }
 ];
 
-// 2. ラウンジ・朝食スタッフセリフデータ (英語専用・全15項目)
+// ラウンジ（15項目・英語専用）
 const loungeSteps = [
   { jp: "おはようございます。いらっしゃいませ。", en: "Good morning! Welcome to our lounge.", customerEn: "Good morning!", feedback: "爽やかな朝のご挨拶でお出迎えしましょう。" },
   { jp: "お名前とお部屋番号を教えて下さい。", en: "May I have your room number and name, please?", customerEn: "Room 402, John Smith.", feedback: "朝食券がないため、笑顔でお名前とお部屋番号をお伺いします。" },
@@ -491,6 +488,32 @@ const loungeSteps = [
   { jp: "ラストオーダーは終わっていますが、あちらのブッフェコーナーで好きなものを取ることが出来ます。", en: "The last order time has passed, but you can still help yourself to anything at the buffet section.", customerEn: "Okay, thank you.", feedback: "ラストオーダー後の丁寧なフォローです。" },
   { jp: "9時20分でお料理を下げて、9時30分で閉店となりますのでご了承下さい。", en: "Please note that the food will be cleared at 9:20, and the lounge closes at 9:30 AM.", customerEn: "Understood. Thanks for letting me know.", feedback: "閉店・お下げ時間のご案内です。" }
 ];
+
+// ルビ生成辞書（中国語＆韓国語）
+function getRecognizedRuby(text, lang) {
+  if (lang === 'zh') {
+    if (text.includes("您好")) return "Nǐ hǎo（ニー ハオ）";
+    if (text.includes("谢谢")) return "Xièxie（シェシェ）";
+    if (text.includes("是的")) return "Shì de（シー ドゥ）";
+    if (text.includes("入住")) return "Rùzhù（ルージュ）";
+    if (text.includes("护照")) return "Hùzhào（フージャオ）";
+    if (text.includes("停车场")) return "Tíngchēchǎng（ティンチャーチャン）";
+    if (text.includes("明白")) return "Míngbai（ミンバイ）";
+    if (text.includes("知道")) return "Zhīdào（ジーダオ）";
+    return "中国語（発音確認OK）";
+  } else if (lang === 'ko') {
+    if (text.includes("안녕")) return "アンニョンハセヨ / アンニョンハシムニカ";
+    if (text.includes("감사")) return "カムサハムニダ（感謝します）";
+    if (text.includes("네")) return "ネー（はい）";
+    if (text.includes("맞습니다")) return "マスムニダ（そうです）";
+    if (text.includes("예약")) return "イェヤク（予約）";
+    if (text.includes("여권")) return "ヨグォン（パスポート）";
+    if (text.includes("주차")) return "ジュチャ（駐車）";
+    if (text.includes("알겠습니다")) return "アルゲッスムニダ（分かりました）";
+    return "韓国語（発音確認OK）";
+  }
+  return "";
+}
 
 let currentScreen = 'start';
 let currentCourse = 'front';
@@ -538,8 +561,21 @@ function testSpeechRecognition(expectedText, resultBoxId, btnId) {
   recognition.onresult = function(event) {
     const speechResult = event.results[0][0].transcript;
     if (resultBox) {
+      let rubyHtml = "";
+      if (currentLang === 'zh' || currentLang === 'ko') {
+        const rubyText = getRecognizedRuby(speechResult, currentLang);
+        if (rubyText) {
+          rubyHtml = `<br>📖 <strong>読み方ガイド:</strong> <span class="recognized-ruby">${rubyText}</span>`;
+        }
+      }
+
       resultBox.className = 'recognition-result-box success';
-      resultBox.innerHTML = '<strong>✨ 判定クリア！</strong><br>認識された言葉: "' + speechResult + '"<br>🐳 くじらちゃん：素晴らしい発音です！自信が伝わってきますね。<div class="recognition-note">※音声判定はブラウザ機能を利用した目安です。</div>';
+      resultBox.innerHTML = `
+        <strong>✨ 判定完了！</strong><br>
+        認識された言葉: "<strong>${speechResult}</strong>"${rubyHtml}<br>
+        🐳 くじらちゃん：素晴らしい発音です！自信が伝わってきますね。
+        <div class="recognition-note">※音声判定はブラウザ機能を利用した目安です。</div>
+      `;
     }
     resetButtonState(btn);
   };
@@ -547,7 +583,7 @@ function testSpeechRecognition(expectedText, resultBoxId, btnId) {
   recognition.onerror = function() {
     if (resultBox) {
       resultBox.className = 'recognition-result-box retry';
-      resultBox.innerHTML = '🐳 くじらちゃん：音声をうまく拾えませんでした。マイクの設定をご確認ください。<div class="recognition-note">※音声判定はブラウザ機能を利用した目安です。</div>';
+      resultBox.innerHTML = '🐳 くじらちゃん：音声をうまく拾えませんでした。ゆっくりハッキリ話してみてくださいね。<div class="recognition-note">※音声判定はブラウザ機能を利用した目安です。</div>';
     }
     resetButtonState(btn);
   };
@@ -592,7 +628,6 @@ function renderApp() {
           <h2 style="font-size: 1.1rem; color: var(--primary); margin: 0;">練習するコースを選択してください</h2>
         </div>
 
-        <!-- フロント・チェックインコース -->
         <div class="course-card">
           <div class="course-title">🛎️ フロント・チェックイン業務コース (3言語対応)</div>
           <button class="lang-btn" onclick="startSimulation('front', 'en')">
@@ -606,7 +641,6 @@ function renderApp() {
           </button>
         </div>
 
-        <!-- ラウンジ・朝食スタッフコース -->
         <div class="course-card">
           <div class="course-title">☕ ラウンジ・朝食スタッフ業務コース (英語専用)</div>
           <button class="lang-btn" onclick="startSimulation('lounge', 'en')">
@@ -614,7 +648,6 @@ function renderApp() {
           </button>
         </div>
 
-        <!-- ボトムアクション -->
         <div class="bottom-actions">
           <button class="action-btn" onclick="openNoticeModal()">📢 お知らせ</button>
           <button class="action-btn" onclick="openContactModal()">💡 お問い合わせ</button>
@@ -769,9 +802,8 @@ function openNoticeModal() {
         <div style="font-size: 0.9rem; line-height: 1.6; color: var(--text-main);">
           <p style="margin-top:0;"><strong>【RoHLL アプリへようこそ】</strong></p>
           <ul style="padding-left: 18px; margin-bottom: 0;">
-            <li>フロント業務（35ステップ）とラウンジ・朝食スタッフ業務（15ステップ）をシミュレーション学習できます。</li>
-            <li>英語、中国語、韓国語の正確な発音ガイド（カタカナルビ）を搭載しています。</li>
-            <li>マイクでの発音テスト機能も目安としてお使いいただけます。</li>
+            <li>中国語・韓国語の発音テスト時に「読み方ガイド（ピンイン/ルビ）」が自動表示されるようになりました！</li>
+            <li>フロント業務（35ステップ）とラウンジ・朝食業務（15ステップ）対応。</li>
           </ul>
         </div>
         <button class="submit-btn" onclick="closeModal()" style="margin-top: 10px;">閉じる</button>
@@ -796,7 +828,7 @@ function openContactModal() {
           </div>
           <div class="form-group" style="margin-bottom: 12px;">
             <label>お問い合わせ・フィードバック内容</label>
-            <textarea id="contact-msg" rows="4" placeholder="ご意見やご感想、機能のご要望をお気軽にお寄せください。" required></textarea>
+            <textarea id="contact-msg" rows="4" placeholder="ご意見やご感想をどうぞ。" required></textarea>
           </div>
           <button type="submit" class="submit-btn" style="width: 100%;">送信する</button>
         </form>
@@ -806,13 +838,12 @@ function openContactModal() {
 }
 
 function closeModal(e) {
-  const modalContainer = document.getElementById('modal-container');
-  modalContainer.innerHTML = '';
+  document.getElementById('modal-container').innerHTML = '';
 }
 
 function submitContact(e) {
   e.preventDefault();
-  alert('お問い合わせありがとうございます！送信が完了しました。');
+  alert('お問い合わせありがとうございます！');
   closeModal();
 }
 

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterenglish - 多言語＆ラウンジ版シミュレーター</title>
+    <style>
+        :root {
+            --bg-color: #f7f9fc;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --accent-color: #3498db;
+            --accent-hover: #2980b9;
+            --lounge-color: #e67e22;
+            --lounge-hover: #d35400;
+            --success-color: #27ae60;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* モード選択画面 */
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .menu-btn:hover { background-color: var(--accent-hover); }
+        .menu-btn:active { transform: scale(0.98); }
+        .menu-btn.lounge { background-color: var(--lounge-color); }
+        .menu-btn.lounge:hover { background-color: var(--lounge-hover); }
+
+        /* 画面切り替え用セクション */
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+            padding: 0;
+        }
+        .back-btn:hover { text-decoration: underline; }
+
+        /* スクリプトのリストカード */
+        .script-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 65vh;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .script-card {
+            background: #fdfefe;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .script-header {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .script-main {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+
+        .script-jp {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-bottom: 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            background-color: #edf2f7;
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #4a5568;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover { background-color: #e2e8f0; }
+        .action-btn.speak { color: var(--accent-color); }
+        .action-btn.check { color: var(--success-color); }
+
+        .feedback-text {
+            font-size: 0.8rem;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #a0aec0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- スタート画面（元の構成） -->
+        <div id="home-view" class="view-section active">
+            <h1>Masterenglish</h1>
+            <p class="subtitle">学習するモードを選択してください</p>
+            
+            <div class="menu-grid">
+                <button class="menu-btn" onclick="switchView('english-view')">英語トレーニング</button>
+                <button class="menu-btn" onclick="switchView('korean-view')">韓国語トレーニング</button>
+                <button class="menu-btn" onclick="switchView('chinese-view')">中国語トレーニング</button>
+                <button class="menu-btn lounge" onclick="switchView('lounge-view')">ホテルフロント・ラウンジ版 (English)</button>
+            </div>
+        </div>
+
+        <!-- 英語画面（中身を実装） -->
+        <div id="english-view" class="view-section">
+            <button class="back-btn" onclick="switchView('home-view')">← スタート画面に戻る</button>
+            <h1>英語トレーニング</h1>
+            <p class="subtitle">フロント接客・基本フレーズ</p>
+            <div class="script-list" id="english-script-container"></div>
+        </div>
+
+        <!-- 韓国語画面（中身を実装） -->
+        <div id="korean-view" class="view-section">
+            <button class="back-btn" onclick="switchView('home-view')">← スタート画面に戻る</button>
+            <h1>韓国語トレーニング</h1>
+            <p class="subtitle">프론트 접객・기본 회화 (フロント接客・基本会話)</p>
+            <div class="script-list" id="korean-script-container"></div>
+        </div>
+
+        <!-- 中国語画面（中身を実装） -->
+        <div id="chinese-view" class="view-section">
+            <button class="back-btn" onclick="switchView('home-view')">← スタート画面に戻る</button>
+            <h1>中国語トレーニング</h1>
+            <p class="subtitle">前台接待・基本用语 (フロント接客・基本用語)</p>
+            <div class="script-list" id="chinese-script-container"></div>
+        </div>
+
+        <!-- ラウンジ版画面（中身を実装・全14行） -->
+        <div id="lounge-view" class="view-section">
+            <button class="back-btn" onclick="switchView('home-view')">← スタート画面に戻る</button>
+            <h1>ホテルフロント・ラウンジ版</h1>
+            <p class="subtitle">朝食ラウンジの接客英語（音声・発音判定対応）</p>
+            <div class="script-list" id="lounge-script-container"></div>
+        </div>
+
+        <div class="footer-note">
+            くじらちゃん倫理モジュール搭載
+        </div>
+    </div>
+
+    <script>
+        // 画面切り替え関数
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(viewId).classList.add('active');
+        }
+
+        // 各言語の充実したコンテンツデータ
+        const englishData = [
+            { id: 101, jp: "いらっしゃいませ。ようこそお越しくださいました。", target: "Welcome to our hotel.", lang: "en-US" },
+            { id: 102, jp: "ご予約のお名前を伺えますでしょうか。", target: "May I have your name for the reservation, please?", lang: "en-US" },
+            { id: 103, jp: "パスポートをご提示いただけますか。", target: "Could you show me your passport, please?", lang: "en-US" },
+            { id: 104, jp: "お荷物をお預かりしましょうか？", target: "Would you like us to hold your luggage?", lang: "en-US" },
+            { id: 105, jp: "お部屋のご案内をいたします。", target: "I will guide you to your room.", lang: "en-US" }
+        ];
+
+        const koreanData = [
+            { id: 201, jp: "いらっしゃいませ。ようこそお越しくださいました。", target: "어서 오십시오. 환영합니다.", lang: "ko-KR" },
+            { id: 202, jp: "ご予約のお名前を伺えますでしょうか。", target: "예약하신 성함을 말씀해 주시겠습니까?", lang: "ko-KR" },
+            { id: 203, jp: "パスポートをご提示いただけますか。", target: "여권을 보여 주시겠습니까?", lang: "ko-KR" },
+            { id: 204, jp: "お荷物をお預かりしましょうか？", target: "짐을 맡겨 드릴까요?", lang: "ko-KR" },
+            { id: 205, jp: "お部屋までご案内いたします。", target: "객실로 안내해 드리겠습니다.", lang: "ko-KR" }
+        ];
+
+        const chineseData = [
+            { id: 301, jp: "いらっしゃいませ。ようこそお越しくださいました。", target: "欢迎光临本酒店。", lang: "zh-CN" },
+            { id: 302, jp: "ご予約のお名前を伺えますでしょうか。", target: "请问您的预订姓名是？", lang: "zh-CN" },
+            { id: 303, jp: "パスポートをご提示いただけますか。", target: "请出示您的护照。", lang: "zh-CN" },
+            { id: 304, jp: "お荷物をお預かりしましょうか？", target: "需要帮您寄存行李吗？", lang: "zh-CN" },
+            { id: 305, jp: "お部屋までご案内いたします。", target: "我带您去房间。", lang: "zh-CN" }
+        ];
+
+        const loungeData = [
+            { id: 401, jp: "おはようございます。いらっしゃいませ。", target: "Good morning. Welcome.", lang: "en-US" },
+            { id: 402, jp: "お名前とお部屋番号を教えて下さい。", target: "May I have your name and room number, please?", lang: "en-US" },
+            { id: 403, jp: "空いてる席に座ってください。", target: "Please choose any available table.", lang: "en-US" },
+            { id: 404, jp: "こちらのカードはお帰りの時に裏返して置いてください。", target: "Please flip this card over when you leave.", lang: "en-US" },
+            { id: 405, jp: "始めにメインのプレートを和食か洋食で決めて下さい。", target: "First, please choose your main plate: Japanese or Western style.", lang: "en-US" },
+            { id: 406, jp: "その後にサラダやフルーツ、ドリンクなどお好きなものを自分で取りに行くハーフブッフェです。", target: "After that, it is a half-buffet where you can help yourself to salads, fruits, and drinks.", lang: "en-US" },
+            { id: 407, jp: "和食ですね？ご飯かお粥でしたらどちらが良いでしょうか？", target: "Japanese style, correct? Would you prefer rice or rice porridge?", lang: "en-US" },
+            { id: 408, jp: "洋食ですね？玉子料理を選んで下さい。プレーンオムレツ、目玉焼き、スクランブルエッグがあります。", target: "Western style, correct? Please choose your egg dish: plain omelet, fried egg, or scrambled eggs.", lang: "en-US" },
+            { id: 409, jp: "目玉焼きの焼き加減はどうしますか? 半熟、完熟、両面焼きがあります。", target: "How would you like your fried eggs? We have soft-cooked, well-done, or over-easy.", lang: "en-US" },
+            { id: 410, jp: "承知しました。それではどうぞお好きな物をお取り下さい。", target: "Certainly. Please go ahead and enjoy the buffet items.", lang: "en-US" },
+            { id: 411, jp: "お待たせいたしました。ごゆっくりどうぞ。", target: "Thank you for waiting. Please enjoy your meal.", lang: "en-US" },
+            { id: 412, jp: "ありがとうございました。良い一日を。", target: "Thank you very much. Have a wonderful day.", lang: "en-US" },
+            { id: 413, jp: "ラストオーダーは終わっていますが、あちらのブッフェコーナーで好きなものを取ることが出来ます。", target: "Although last order has passed, you are still welcome to pick up items from the buffet corner over there.", lang: "en-US" },
+            { id: 414, jp: "9時20分でお料理を下げて、9時30分で閉店となりますのでご了承下さい。", target: "Please note that we will clear the food at 9:20 AM and close at 9:30 AM.", lang: "en-US" }
+        ];
+
+        // 共通のカード描画関数
+        function renderScripts(containerId, data) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'script-card';
+                card.innerHTML = `
+                    <div class="script-header">PHRASE ${item.id}</div>
+                    <div class="script-main">${item.target}</div>
+                    <div class="script-jp">${item.jp}</div>
+                    <div class="action-buttons">
+                        <button class="action-btn speak" onclick="speakText('${item.target.replace(/'/g, "\\'")}', '${item.lang}')">🔊 お手本音声</button>
+                        <button class="action-btn check" onclick="startPronunciationCheck(${item.id}, '${item.target.replace(/'/g, "\\'")}', '${item.lang}')">🎤 発音判定</button>
+                    </div>
+                    <div id="feedback-${item.id}" class="feedback-text"></div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 音声合成（各言語対応）
+        function speakText(text, lang) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('お使いの環境では音声合成がサポートされていません。');
+            }
+        }
+
+        // 発音判定（各言語対応）
+        function startPronunciationCheck(id, targetText, lang) {
+            const feedbackEl = document.getElementById(`feedback-${id}`);
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+            if (!SpeechRecognition) {
+                feedbackEl.style.color = '#e74c3c';
+                feedbackEl.textContent = 'お使いのブラウザは音声認識に対応していません。';
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = lang;
+            recognition.interimResults = false;
+
+            feedbackEl.style.color = '#d68910';
+            feedbackEl.textContent = '🎤 聞き取り中... お話しください';
+
+            recognition.onresult = function(event) {
+                const spokenText = event.results[0][0].transcript;
+                feedbackEl.style.color = 'var(--success-color)';
+                feedbackEl.textContent = `✨ 認識結果: "${spokenText}"`;
+            };
+
+            recognition.onerror = function() {
+                feedbackEl.style.color = '#e74c3c';
+                feedbackEl.textContent = '⚠️ 音声を認識できませんでした。もう一度お試しください。';
+            };
+
+            recognition.start();
+        }
+
+        // 初期化時に全画面のスクリプトを描画
+        renderScripts('english-script-container', englishData);
+        renderScripts('korean-script-container', koreanData);
+        renderScripts('chinese-script-container', chineseData);
+        renderScripts('lounge-script-container', loungeData);
+    </script>
+</body>
+</html>

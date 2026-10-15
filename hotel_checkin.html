@@ -86,7 +86,7 @@
     }
     .progress-bar {
       height: 100%;
-      background: var(--accent); /* シャンパンゴールド/アンバーで視認性抜群 */
+      background: var(--accent); /* シャンパンゴールド/アンバー */
       width: 0%;
       transition: width 0.3s ease;
     }
@@ -430,7 +430,7 @@
 <div id="modal-container"></div>
 
 <script>
-// 1. フロント全35ステップ (韓国語カタカナルビ全修整・カクテルタイム注意事項移動完了)
+// 1. フロント全35ステップ (韓国語カタカナルビ全修整・カクテルタイム注意事項Step25移動済み)
 const frontSteps = [
   { jp: "こんにちわ（こんばんわ）、いらっしゃいませ。", en: "Good afternoon (or Good evening), and welcome.", zh: "您好（晚上好），欢迎光临！", ko: "안녕하십니까(저녁에는 안녕하십니까), 어서 오십시오.", pinyin: "Nín hǎo (wǎnshang hǎo), huānyíng guānglín!", kana: "ニン ハオ（ワンシャン ハオ）、フアンイン グアンリン！", kanaKo: "アンニョンハシムニカ、オソ オシプシオ。", customerEn: "Hello. I have a reservation.", customerZh: "您好，我预订了房间。", customerKo: "안녕하세요. 예약했습니다.", feedback: "温かい笑顔でお迎えしましょう。" },
   { jp: "チェックインでしょうか？", en: "Are you checking in today?", zh: "您是办理入住吗？", ko: "체크인 하시겠습니까?", pinyin: "Nín shì bànlǐ rùzhù ma?", kana: "ニン シ バンリ ルージュ マ？", kanaKo: "チェクイン ハシゲッスムニカ？", customerEn: "Yes, that's right.", customerZh: "是的，没错。", customerKo: "네, 맞습니다.", feedback: "スムーズなご案内です。" },
@@ -456,14 +456,14 @@ const frontSteps = [
   { jp: "15時から17時30分まではティータイムでコーヒー、紅茶、ソフトドリンクや焼き菓子をご用意しています。", en: "From 3:00 PM to 5:30 PM is tea time, offering coffee, tea, soft drinks, and baked sweets.", zh: "15点到17点半是下午茶时间，准备了咖啡、红茶和点心。", ko: "15시부터 17시 30분까지는 티타임입니다.", pinyin: "15 diǎn dào 17 diǎn bàn...", kana: "シーウー ディェン ダオ シーチー ディェン バン...", kanaKo: "エルダソッシブト ニョルイルゴプシ サムシップンッカジヌン ティタイムイムニダ。", customerEn: "Sounds great.", customerZh: "听起来很好。", customerKo: "아주 좋네요.", feedback: "ティータイムのご案内です。" },
   { jp: "17時30分から19時30分まではカクテルタイムでアルコール、ソフトドリンク、軽い前菜をご用意しています。", en: "From 5:30 PM to 7:30 PM is cocktail time, offering alcoholic drinks, soft drinks, and light appetizers.", zh: "17点半到19点半是鸡尾酒时间，准备了酒类和小食。", ko: "17시 30분부터 19시 30분까지는 칵테일 타임입니다.", pinyin: "17 diǎn bàn dào 19 diǎn bàn...", kana: "シーチー ディェン バン ダオ シージウ ディェン バン...", kanaKo: "ニョルイルゴプシ サムシップンッカジヌン カクテル タイムイムニダ。", customerEn: "Good to know.", customerZh: "记下了。", customerKo: "잘 알겠습니다.", feedback: "カクテルタイムのご案内です。" },
   { jp: "19時30分から20時30分まではお休み前のノンカフェインドリンクをご用意しています。", en: "From 7:30 PM to 8:30 PM, we serve decaf drinks for a relaxing bedtime.", zh: "19点半到20点半，我们准备了睡前无咖啡因饮品。", ko: "19시 30분부터 20시 30분까지는 디카페인 음료가 준비됩니다.", pinyin: "19 diǎn bàn dào 20 diǎn bàn...", kana: "シージウ ディェン バン ダオ アーシ ディェン バン...", kanaKo: "ニョルアホプシ サムシップンッカジヌン ディカフェイン ウムリョガ ジュンビデムニダ。", customerEn: "That's very nice.", customerZh: "非常贴心。", customerKo: "세심하네요.", feedback: "ナイトタイムのご案内です。" },
-  /* ★ ご指示通り step25 へ配置変更済み ★ */
+  /* ★ Step25: カクテルタイム注意事項 ★ */
   { jp: "（カクテルタイムは未就学のお子様は入場が出来ません。）", en: "Please note that preschool children are not permitted during cocktail time.", zh: "请注意，学龄前儿童无法在鸡尾酒时间进入。", ko: "칵테일 타임에는 미취학 아동의 입장이 불가합니다.", pinyin: "Qǐng zhùyì, xuélíngqián értóng...", kana: "チン ヂューイー、シュエリンチェン アートン...", kanaKo: "カクテル タイムエヌン ミチュハク アドングイ イプジャンイ ブルガハムニダ。", customerEn: "Understood.", customerZh: "明白了。", customerKo: "이해했습니다.", feedback: "注意事項のお伝えです。" },
   { jp: "続いて朝食のご案内です。\n入場時間は7時から9時となっております。", en: "Next, regarding breakfast. The opening hours are from 7:00 AM to 9:00 AM.", zh: "接下来是早餐说明。用餐时间为早上7点至9点。", ko: "이어서 조식 안내입니다. 입장 시간은 7시부터 9시까지입니다.", pinyin: "Jiēxiàlái shì zǎocān shuōmíng...", kana: "ジエシァライ シ ザオツァン シュオミン...", kanaKo: "イオソ ジョシク アンネイムニダ。イプジャン シガンウン イルゴプシブト アホプシッカジイムニダ。", customerEn: "Understood.", customerZh: "知道了。", customerKo: "알겠습니다.", feedback: "朝食時間のご案内です。" },
   { jp: "朝食券は発行していないので、会場に入ったら中に居るスタッフにお部屋番号とお名前をお伝えください。", en: "We do not issue breakfast tickets, so please tell the staff inside your room number and name.", zh: "我们不发放早餐券，请直接向入口处的工作人员报房间号和姓名。", ko: "조식권은 발행되지 않으니, 입구 직원에게 방 번호와 성함을 말씀해 주세요.", pinyin: "Wǒmen bù fāfàng zǎocānquàn...", kana: "ウォメン ブ ファファン ザオツァンチュエン...", kanaKo: "ジョシクグォンウン バルヘンデジ アヌニ、イプグ ジグウォネゲ バン ボノワ ソンハムウル マルスムヘ ジュセヨ。", customerEn: "Got it. No paper tickets needed.", customerZh: "好的，不需要纸质券。", customerKo: "네, 방 번호를 말하겠습니다.", feedback: "朝食のご入場方法です。" },
   { jp: "続きまして空調のご案内です。", en: "Next, let me explain the air conditioning.", zh: "接下来为您介绍房间空调。", ko: "이어서 냉난방 안내입니다.", pinyin: "Jiēxiàlái wèi nín jièshào...", kana: "ジエシァライ ウェイ ニン ジエシャオ...", kanaKo: "イオソ ネンナンバン アンネイムニダ。", customerEn: "Okay.", customerZh: "好的。", customerKo: "네.", feedback: "空調設備のご案内です。" },
   { jp: "こちらのリモコンがお風呂場の近くにあります。\nただいま全館一括で冷房（暖房）運転をしています。", en: "This remote control is near the bathroom.\nCurrently, the entire building is on central cooling (or heating).", zh: "遥控器在浴室附近。目前全馆统一运行冷气（暖气）。", ko: "이 리모컨이 욕실 근처에 있습니다. 현재 전 객실 일괄 냉방(난방) 가동 중입니다.", pinyin: "Yáokòngqì zài yùshì fùjìn...", kana: "ヤオコンチー ザイ ユーシー フージン...", kanaKo: "イ リモコンイ ヨクシル クンチョエ イッスムニダ。ヒョンジェ ジョン ケクシル イルガル ネンバン ガドン ジュンイムニダ。", customerEn: "Alright.", customerZh: "好的。", customerKo: "알겠습니다.", feedback: "空調の基本設定のご案内です。" },
   { jp: "お部屋で操作できるのはこのスイッチでオン、オフの切り替え\nこのスイッチで風量を調整出来ます。", en: "You can turn it on and off with this switch, and adjust the fan speed with this switch.", zh: "在这个开关控制电源，用这个开关调节风量。", ko: "이 스위치로 켜고 끄기, 이 스위치로 풍량 조절이 가능합니다.", pinyin: "Zài zhège kāiguān kòngzhì...", kana: "ザイ ヂェグ カイグァン コンジー...", kanaKo: "イ スイッチロ キョゴ ッキギ、イ スイッチロ プンリャン ジョジョリ カヌンハムニダ。", customerEn: "I see.", customerZh: "知道了。", customerKo: "그렇군요.", feedback: "スイッチ操作の説明です。" },
-  { jp: "もし、暑い（寒い）と感じたら、Dysonも備え付けてあるので、これで調整して下さい。", en: "If you feel warm or cold, we also provide a Dyson fan, so feel free to use it.", zh: "如果您觉得热或冷，房间里备有Dyson，可以用它调节。", ko: "덥거나 춥다고 느끼시면 비치된 다이슨(Dyson)으로 조절해 주세요.", pinyin: "Rúguǒ nín juéde rè huò lěng...", kana: "ルーグオ ニン ジュエダ ラー ホオ ロン...", kanaKo: "トプコナ チュプタゴ ヌッキシミョン ビチデン ダイスンウロ ジョジョルヘ ジュセヨ。", customerEn: "That's helpful.", customerZh: "这很有用。", customerKo: "도움이 되네요.", feedback: "快適にお過ごしいただく配慮です。" },
+  { jp: "もし、暑い（寒い）と感じたら、Dysonも備え付けてあるので、これで調整して下さい。", en: "If you feel warm or cold, we also provide a Dyson fan, so feel free to use it.", zh: "如果您觉得热或冷，房间里备有Dyson，可以用它调节。", ko: "덥거나 춥다고 느끼하시면 비치된 다이슨(Dyson)으로 조절해 주세요.", pinyin: "Rúguǒ nín juéde rè huò lěng...", kana: "ルーグオ ニン ジュエダ ラー ホオ ロン...", kanaKo: "トプコナ チュプタゴ ヌッキシミョン ビチデン ダイスンウロ ジョジョルヘ ジュセヨ。", customerEn: "That's helpful.", customerZh: "这很有用。", customerKo: "도움이 되네요.", feedback: "快適にお過ごしいただく配慮です。" },
   { jp: "全室禁煙です。喫煙所は4階のラウンジの前と駐車場にあります。", en: "All rooms are non-smoking. Smoking areas are located in front of the 4th-floor lounge and in the parking lot.", zh: "全馆禁烟。吸烟处位于4楼酒廊前及停车场。", ko: "전 객실 금연입니다. 흡연 구역은 4층 라운지 앞과 주차장에 있습니다.", pinyin: "Quán guǎn jìnyān...", kana: "チュェン グアン ジンヤン...", kanaKo: "ジョン ケクシル クミョニムニダ。フビョン グヨグン サチュン ラウンジ アプワ ジュチャジャンエ イッスムニダ。", customerEn: "Thank you for letting me know.", customerZh: "谢谢告知。", customerKo: "알려주셔서 감사합니다.", feedback: "館内ルールの説明です。" },
   { jp: "こちらがルームキーです。", en: "Here is your room key.", zh: "这是您的房卡。", ko: "여기 객실 키입니다.", pinyin: "Zhè shì nín de fángkǎ.", kana: "ヂェ シ ニン ダ ファンカ。", kanaKo: "ヨギ ケクシル キイムニダ。", customerEn: "Thank you.", customerZh: "谢谢。", customerKo: "감사합니다.", feedback: "ルームキーのお渡しです。" },
   { jp: "wi-fiのID、passwordはこちらです。", en: "Here is the Wi-Fi ID and password.", zh: "无线网络的账号和密码在这里。", ko: "와이파이 아이디와 비밀번호는 이쪽입니다.", pinyin: "Wúxiàn wǎngluò de zhànghào...", kana: "ウーシェン ワンルオ ダ ヂャンハオ...", kanaKo: "ワイファイ アイディワ ビミルボノヌン イチョギムニダ。", customerEn: "Got it.", customerZh: "记下了。", customerKo: "알겠습니다.", feedback: "Wi-Fiのご案内です。" },
@@ -614,7 +614,7 @@ function renderApp() {
           </button>
         </div>
 
-        <!-- ボトムアクション（お知らせ・お問い合わせ） -->
+        <!-- ボトムアクション -->
         <div class="bottom-actions">
           <button class="action-btn" onclick="openNoticeModal()">📢 お知らせ</button>
           <button class="action-btn" onclick="openContactModal()">💡 お問い合わせ</button>
@@ -820,4 +820,3 @@ renderApp();
 </script>
 </body>
 </html>
-

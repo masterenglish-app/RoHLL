@@ -321,15 +321,15 @@
       margin-top: 4px;
       font-style: italic;
     }
-    .recognized-ruby {
-      margin-top: 4px;
-      padding: 4px 8px;
+    .recognized-text-display {
+      font-weight: 700;
+      color: #1e3a8a;
       background: #ffffff;
+      padding: 4px 8px;
       border-radius: 4px;
       border: 1px solid #cbd5e0;
-      font-weight: 600;
-      color: #1e3a8a;
       display: inline-block;
+      margin-top: 2px;
     }
 
     .nav-footer {
@@ -453,7 +453,7 @@ const frontSteps = [
   { jp: "ラウンジのご案内からします。", en: "Let me explain about our lounge.", zh: "接下来先为您介绍酒廊的使用。", ko: "라운지 안내부터 해드리겠습니다.", pinyin: "Jiēxiàlái xiān wèi nín...", kana: "ジエシァライ シェン ウェイ ニン...", kanaKo: "ラウンジ アンネブト ヘドゥリゲッスムニダ。", customerEn: "That sounds wonderful.", customerZh: "听起来很不错。", customerKo: "좋습니다.", feedback: "施設案内の開始です。" },
   { jp: "15時から17時30分まではティータイムでコーヒー、紅茶、ソフトドリンクや焼き菓子をご用意しています。", en: "From 3:00 PM to 5:30 PM is tea time, offering coffee, tea, soft drinks, and baked sweets.", zh: "15点到17点半是下午茶时间，准备了咖啡、红茶和点心。", ko: "15시부터 17시 30분까지는 티타임입니다.", pinyin: "15 diǎn dào 17 diǎn bàn...", kana: "シーウー ディェン ダオ シーチー ディェン バン...", kanaKo: "エルダソッシブト ニョルイルゴプシ サムシップンッカジヌン ティタイムイムニダ。", customerEn: "Sounds great.", customerZh: "听起来很好。", customerKo: "아주 좋네요.", feedback: "ティータイムのご案内です。" },
   { jp: "17時30分から19時30分まではカクテルタイムでアルコール、ソフトドリンク、軽い前菜をご用意しています。", en: "From 5:30 PM to 7:30 PM is cocktail time, offering alcoholic drinks, soft drinks, and light appetizers.", zh: "17点半到19点半是鸡尾酒时间，准备了酒类和小食。", ko: "17시 30분부터 19시 30분까지는 칵테일 타임입니다.", pinyin: "17 diǎn bàn dào 19 diǎn bàn...", kana: "シーチー ディェン バン ダオ シージウ ディェン バン...", kanaKo: "ニョルイルゴプシ サムシップンッカジヌン カクテル タイムイムニダ。", customerEn: "Good to know.", customerZh: "记下了。", customerKo: "잘 알겠습니다.", feedback: "カクテルタイムのご案内です。" },
-  { jp: "19時30分から20時30分まではお休み前のノンカフェインドリンクをご用意しています。", en: "From 7:30 PM to 8:30 PM, we serve decaf drinks for a relaxing bedtime.", zh: "19点半到20点半，我们准备了睡前无咖啡因饮品。", ko: "19시 30분부터 20시 30分까지는 디카페인 음료가 준비됩니다.", pinyin: "19 diǎn bàn dào 20 diǎn bàn...", kana: "シージウ ディェン バン ダオ アーシ ディェン バン...", kanaKo: "ニョルアホプシ サムシップンッカジヌン ディカフェイン ウムリョガ ジュンビデムニダ。", customerEn: "That's very nice.", customerZh: "非常贴心。", customerKo: "세심하네요.", feedback: "ナイトタイムのご案内です。" },
+  { jp: "19時30分から20時30分まではお休み前のノンカフェインドリンクをご用意しています。", en: "From 7:30 PM to 8:30 PM, we serve decaf drinks for a relaxing bedtime.", zh: "19点半到20点半，我们准备了睡前无咖啡因饮品。", ko: "19시 30분부터 20시 30분까지는 디카페인 음료가 준비됩니다.", pinyin: "19 diǎn bàn dào 20 diǎn bàn...", kana: "シージウ ディェン バン ダオ アーシ ディェン バン...", kanaKo: "ニョルアホプシ サムシップンッカジヌン ディカフェイン ウムリョガ ジュンビデムニダ。", customerEn: "That's very nice.", customerZh: "非常贴心。", customerKo: "세심하네요.", feedback: "ナイトタイムのご案内です。" },
   { jp: "（カクテルタイムは未就学のお子様は入場が出来ません。）", en: "Please note that preschool children are not permitted during cocktail time.", zh: "请注意，学龄前儿童无法在鸡尾酒时间进入。", ko: "칵테일 타임에는 미취학 아동의 입장이 불가합니다.", pinyin: "Qǐng zhùyì, xuélíngqián értóng...", kana: "チン ヂューイー、シュエリンチェン アートン...", kanaKo: "カクテル タイムエヌン ミチュハク アドングイ イプジャンイ ブルガハムニダ。", customerEn: "Understood.", customerZh: "明白了。", customerKo: "이해했습니다.", feedback: "注意事項のお伝えです。" },
   { jp: "続いて朝食のご案内です。\n入場時間は7時から9時となっております。", en: "Next, regarding breakfast. The opening hours are from 7:00 AM to 9:00 AM.", zh: "接下来是早餐说明。用餐时间为早上7点至9点。", ko: "이어서 조식 안내입니다. 입장 시간은 7시부터 9시까지입니다.", pinyin: "Jiēxiàlái shì zǎocān shuōmíng...", kana: "ジエシァライ シ ザオツァン シュオミン...", kanaKo: "イオソ ジョシク アンネイムニダ。イプジャン シガンウン イルゴプシブト アホプシッカジイムニダ。", customerEn: "Understood.", customerZh: "知道了。", customerKo: "알겠습니다.", feedback: "朝食時間のご案内です。" },
   { jp: "朝食券は発行していないので、会場に入ったら中に居るスタッフにお部屋番号とお名前をお伝えください。", en: "We do not issue breakfast tickets, so please tell the staff inside your room number and name.", zh: "我们不发放早餐券，请直接向入口处的工作人员报房间号和姓名。", ko: "조식권은 발행되지 않으니, 입구 직원에게 방 번호와 성함을 말씀해 주세요.", pinyin: "Wǒmen bù fāfàng zǎocānquàn...", kana: "ウォメン ブ ファファン ザオツァンチュエン...", kanaKo: "ジョシクグォンウン バルヘンデジ アヌニ、イプグ ジグウォネゲ バン ボノワ ソンハムウル マルスムヘ ジュセヨ。", customerEn: "Got it. No paper tickets needed.", customerZh: "好的，不需要纸质券。", customerKo: "네, 방 번호를 말하겠습니다.", feedback: "朝食のご入場方法です。" },
@@ -488,43 +488,6 @@ const loungeSteps = [
   { jp: "ラストオーダーは終わっていますが、あちらのブッフェコーナーで好きなものを取ることが出来ます。", en: "The last order time has passed, but you can still help yourself to anything at the buffet section.", customerEn: "Okay, thank you.", feedback: "ラストオーダー後の丁寧なフォローです。" },
   { jp: "9時20分でお料理を下げて、9時30分で閉店となりますのでご了承下さい。", en: "Please note that the food will be cleared at 9:20, and the lounge closes at 9:30 AM.", customerEn: "Understood. Thanks for letting me know.", feedback: "閉店・お下げ時間のご案内です。" }
 ];
-
-// 聴き取られた「文字そのもの」をピンイン/カタカナに変換する文字解析ロジック
-const zhCharMap = {
-  "您": "Nín（ニン）", "好": "hǎo（ハオ）", "谢": "xiè（シェ）", "是": "shì（シー）",
-  "的": "de（ドゥ）", "不": "bù（ブー）", "我": "wǒ（ウォ）", "有": "yǒu（ヨウ）",
-  "预": "yù（ユー）", "订": "dìng（ディン）", "房": "fáng（ファン）", "间": "jiān（ジエン）",
-  "办": "bàn（バン）", "理": "lǐ（リー）", "入": "rù（ルー）", "住": "zhù（ジュ）",
-  "坐": "zuò（ズオ）", "请": "qǐng（チン）", "护": "hù（フー）", "照": "zhào（ジャオ）",
-  "停": "tíng（ティン）", "车": "chē（チャー）", "场": "chǎng（チャン）", "知": "zhī（ジー）",
-  "道": "dào（ダオ）", "明": "míng（ミン）", "白": "bái（バイ）"
-};
-
-const koHangulMap = {
-  "안": "アン", "녕": "ニョン", "하": "ハ", "세": "セ", "요": "ヨ",
-  "심": "シム", "니": "ニ", "까": "ッカ", "다": "ダ", "감": "カム",
-  "사": "サ", "함": "ハム", "네": "ネー", "맞": "マッ", "습": "スプ",
-  "예": "イェ", "약": "ヤク", "했": "ヘッ", "있": "イッ", "여": "ヨ",
-  "권": "グォン", "주": "ジュ", "차": "チャ", "알": "アル", "겠": "ゲッ"
-};
-
-function convertRecognizedToRuby(text, lang) {
-  let resultStr = "";
-  if (lang === 'zh') {
-    let pinyinList = [];
-    for (let char of text) {
-      if (zhCharMap[char]) pinyinList.push(zhCharMap[char]);
-    }
-    return pinyinList.length > 0 ? pinyinList.join(" ") : "ピンイン解析完了";
-  } else if (lang === 'ko') {
-    let kanaStr = "";
-    for (let char of text) {
-      if (koHangulMap[char]) kanaStr += koHangulMap[char];
-    }
-    return kanaStr.length > 0 ? kanaStr : "カタカナ読み解析完了";
-  }
-  return "";
-}
 
 let currentScreen = 'start';
 let currentCourse = 'front';
@@ -572,18 +535,10 @@ function testSpeechRecognition(expectedText, resultBoxId, btnId) {
   recognition.onresult = function(event) {
     const speechResult = event.results[0][0].transcript;
     if (resultBox) {
-      let rubyHtml = "";
-      if (currentLang === 'zh' || currentLang === 'ko') {
-        const rubyText = convertRecognizedToRuby(speechResult, currentLang);
-        if (rubyText) {
-          rubyHtml = `<br>📖 <strong>聞こえた文字の読み:</strong> <span class="recognized-ruby">${rubyText}</span>`;
-        }
-      }
-
       resultBox.className = 'recognition-result-box success';
       resultBox.innerHTML = `
         <strong>✨ 判定完了！</strong><br>
-        認識された言葉: "<strong>${speechResult}</strong>"${rubyHtml}<br>
+        認識された言葉: <span class="recognized-text-display">${speechResult}</span><br>
         🐳 くじらちゃん：素晴らしい発音です！自信が伝わってきますね。
         <div class="recognition-note">※音声判定はブラウザ機能を利用した目安です。</div>
       `;
@@ -813,7 +768,7 @@ function openNoticeModal() {
         <div style="font-size: 0.9rem; line-height: 1.6; color: var(--text-main);">
           <p style="margin-top:0;"><strong>【RoHLL アプリへようこそ】</strong></p>
           <ul style="padding-left: 18px; margin-bottom: 0;">
-            <li>認識された言葉の「実際の読み（ルビ）」が忠実に表示されるようになりました！</li>
+            <li>音声認識の判定結果表示をより見やすくスッキリ整えました！</li>
             <li>フロント業務（35ステップ）とラウンジ・朝食業務（15ステップ）対応。</li>
           </ul>
         </div>
@@ -862,3 +817,4 @@ renderApp();
 </script>
 </body>
 </html>
+

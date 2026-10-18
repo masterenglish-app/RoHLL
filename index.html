@@ -325,22 +325,21 @@
       font-weight: 700;
       color: #1e3a8a;
       background: #ffffff;
-      padding: 4px 8px;
+      padding: 2px 6px;
       border-radius: 4px;
       border: 1px solid #cbd5e0;
       display: inline-block;
       margin-top: 2px;
     }
     .recognized-ruby {
-      margin-top: 4px;
-      padding: 4px 8px;
-      background: #ffffff;
+      font-weight: 700;
+      color: #0369a1;
+      background: #f0f9ff;
+      padding: 2px 6px;
       border-radius: 4px;
-      border: 1px solid #cbd5e0;
-      font-weight: 600;
-      color: #1e3a8a;
-      display: block;
-      font-size: 0.88rem;
+      border: 1px solid #bae6fd;
+      display: inline-block;
+      margin-top: 2px;
     }
 
     .nav-footer {
@@ -439,13 +438,13 @@
 <div id="modal-container"></div>
 
 <script>
-// フロント全35ステップデータ
+// フロント全38ステップデータ
 const frontSteps = [
   { jp: "こんにちわ（こんばんわ）、いらっしゃいませ。", en: "Good afternoon (or Good evening), and welcome.", zh: "您好（晚上好），欢迎光临！", ko: "안녕하십니까(저녁에는 안녕하십니까), 어서 오십시오.", pinyin: "Nín hǎo (wǎnshang hǎo), huānyíng guānglín!", kana: "ニン ハオ（ワンシャン ハオ）、フアンイン グアンリン！", kanaKo: "アンニョンハシムニカ、オソ オシプシオ。", customerEn: "Hello. I have a reservation.", customerZh: "您好，我预订了房间。", customerKo: "안녕하세요. 예약했습니다.", feedback: "温かい笑顔でお迎えしましょう。" },
   { jp: "チェックインでしょうか？", en: "Are you checking in today?", zh: "您是办理入住吗？", ko: "체크인 하시겠습니까?", pinyin: "Nín shì bànlǐ rùzhù ma?", kana: "ニン シ バンリ ルージュ マ？", kanaKo: "チェクイン ハシゲッスムニカ？", customerEn: "Yes, that's right.", customerZh: "是的，没错。", customerKo: "네, 맞습니다.", feedback: "スムーズなご案内です。" },
   { jp: "どうぞ座ってください。", en: "Please have a seat.", zh: "请您这边坐，请坐。", ko: "이쪽으로 앉으십시오.", pinyin: "Qǐng nín zhèbiān zuò, qǐng zuò.", kana: "チン ニン ヂェビエン ズオ、チン ズオ。", kanaKo: "イッチョグロ アンジュシプシオ。", customerEn: "Thank you.", customerZh: "谢谢。", customerKo: "감사합니다.", feedback: "お気遣いの一言です。" },
   { jp: "お名前をどうぞ。", en: "May I have your name, please?", zh: "请问您贵姓？", ko: "성함이 어떻게 되십니까?", pinyin: "Qǐngwèn nín guìxìng?", kana: "チンウェン ニン グエイシン？", kanaKo: "ソンハミ オトケ テルシムニカ？", customerEn: "Sure, my name is John Smith.", customerZh: "好的，我叫约翰·史密斯。", customerKo: "네, 제 이름은 존 스미스입니다.", feedback: "正確なお名前確認の第一歩です。" },
-  { jp: "少々お待ちください。", en: "One moment, please.", zh: "请您稍等一下。", ko: "잠시만 기다려 주십시오.", pinyin: "Qǐng nín shāo děng yīxià.", kana: "チン ニン シャオ ドン イーシア。", kanaKo: "チャムシマン キダリョ ジュシプシオ。", customerEn: "Take your time.", customerZh: "不着急，请慢用。", customerKo: "천천히 하세요.", feedback: "落ち着いたやり取りですね。" },
+  { jp: "少々お待ちください。", en: "One moment, please.", zh: "请您稍等一下。", ko: "잠시만 기다려 주십시오.", pinyin: "Qǐngwèn nín shāo děng yīxià.", kana: "チン ニン シャオ ドン イーシア。", kanaKo: "チャムシマン キダリョ ジュシプシオ。", customerEn: "Take your time.", customerZh: "不着急，请慢用。", customerKo: "천천히 하세요.", feedback: "落ち着いたやり取りですね。" },
   { jp: "パスポートをよろしいでしょうか？\n（パスポートをお客様からお預かりします）", en: "May I have your passport, please?", zh: "请问我可以看一下您的护照吗？", ko: "여권을 보여주시겠습니까?", pinyin: "Qǐngwèn wǒ kěyǐ kàn yīxià nín de hùzhào ma?", kana: "チンウェン ウォ ケイイ カン イーシア ニン ダ フージャオ マ？", kanaKo: "ヨグォヌル ポヨジュシゲッスムニカ？", customerEn: "Here you are.", customerZh: "给您。", customerKo: "여기 있습니다.", feedback: "丁寧にお預かりしましょう。" },
   { jp: "◯◯さまですね、ありがとうございます。\nパスポートをコピーしてもよろしいでしょうか？", en: "Mr./Ms. Smith, thank you very much.\nMay I make a copy of your passport?", zh: "◯◯先生／女士，谢谢您。我可以复印一下您的护照吗？", ko: "◯◯님, 감사합니다. 여권을 복사해도 되겠습니까?", pinyin: "◯◯ xiānsheng/nǚshì, xièxie nín. Wǒ kěyǐ fùyìn yīxià nín de hùzhào ma?", kana: "◯◯ シェンション／ニューシ、シェシエ ニン。ウォ ケイイ フーイン イーシア ニン ダ フージャオ マ？", kanaKo: "◯◯ニム、カムサハムニダ。ヨグォヌル ボクサヘド テルゲッスムニカ？", customerEn: "Yes, of course.", customerZh: "好的，当然可以。", customerKo: "네, 물론입니다.", feedback: "安心していただける確認です。" },
   { jp: "少々お待ちください。", en: "Please give me just a moment.", zh: "请您稍等片刻。", ko: "잠시만 기다려 주십시오.", pinyin: "Qǐng nín shāo děng piànkè.", kana: "チン ニン シャオ ドン ピエンクァ。", kanaKo: "チャムシマン キダリョ ジュシプシオ。", customerEn: "Thank you.", customerZh: "谢谢。", customerKo: "감사합니다.", feedback: "丁寧な一言を忘れずに。" },
@@ -500,35 +499,185 @@ const loungeSteps = [
   { jp: "9時20分でお料理を下げて、9時30分で閉店となりますのでご了承下さい。", en: "Please note that the food will be cleared at 9:20, and the lounge closes at 9:30 AM.", customerEn: "Understood. Thanks for letting me know.", feedback: "閉店・お下げ時間のご案内です。" }
 ];
 
-// 認識されたテキストからカタカナ／ピンインの読み方を全文結合して返す関数
-function getRubyForRecognition(text, lang) {
-  if (lang === 'zh') {
-    let result = [];
-    if (text.includes("您好")) result.push("Nín hǎo（ニー ハオ）");
-    if (text.includes("晚上好")) result.push("Wǎnshang hǎo（ワンシャン ハオ）");
-    if (text.includes("欢迎光临") || text.includes("欢迎")) result.push("Huānyíng guānglín（フアンイン グアンリン）");
-    if (text.includes("谢谢")) result.push("Xièxie（シェシェ）");
-    if (text.includes("是的")) result.push("Shì de（シー ドゥ）");
-    if (text.includes("入住")) result.push("Rùzhù（ルージュ）");
-    if (text.includes("护照")) result.push("Hùzhào（フージャオ）");
-    if (text.includes("停车场")) result.push("Tíngchēchǎng（ティンチャーチャン）");
-    return result.length > 0 ? result.join(" ") : "ピンイン確認OK";
-  } else if (lang === 'ko') {
-    let result = [];
-    if (text.includes("안녕하십니까")) result.push("アンニョンハシムニカ");
-    else if (text.includes("안녕하세요") || text.includes("안녕")) result.push("アンニョンハセヨ");
+// ユーティリティ関数（アポストロフィ対策・HTMLエスケープ）
+function enc(s){ return encodeURIComponent(s).replace(/'/g, '%27'); }
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 
-    if (text.includes("어서 오십시오") || text.includes("어서오십시오") || text.includes("어서 봬요") || text.includes("어서")) result.push("オソ オシプシオ");
-    if (text.includes("감사합니다") || text.includes("감사")) result.push("カムサハムニダ");
-    if (text.includes("네") || text.includes("예")) result.push("ネー");
-    if (text.includes("맞습니다")) result.push("マスムニダ");
-    if (text.includes("예약")) result.push("イェヤク");
-    if (text.includes("여권")) result.push("ヨグォン");
-    if (text.includes("주차")) result.push("ジュチャ");
-    if (text.includes("알겠습니다")) result.push("アルゲッスムニダ");
-    return result.length > 0 ? result.join(" ") : "ハングル読み確認OK";
+// レーベンシュタイン距離 & 類似度スコア
+function normalizeForCompare(text){
+  return text.toLowerCase().normalize('NFKC')
+    .replace(/[（）()\[\]「」'".,!?、。，！？;:：\/]/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+}
+function levenshtein(a, b){
+  const m = a.length, n = b.length;
+  if (!m) return n; if (!n) return m;
+  let prev = Array.from({length: n + 1}, (_, i) => i);
+  for (let i = 1; i <= m; i++){
+    const cur = [i];
+    for (let j = 1; j <= n; j++){
+      cur[j] = Math.min(prev[j] + 1, cur[j-1] + 1, prev[j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+    }
+    prev = cur;
   }
-  return "";
+  return prev[n];
+}
+function similarityScore(expected, actual){
+  const ea = normalizeForCompare(expected), aa = normalizeForCompare(actual);
+  if (!ea || !aa) return 0;
+  return Math.max(0, 1 - levenshtein(ea, aa) / Math.max(ea.length, aa.length));
+}
+function gradeResult(score){
+  if (score >= 0.85) return {cls:'success', icon:'🌸', label:'パーフェクト！', msg:'ほぼ完璧な発音です。その調子です！'};
+  if (score >= 0.60) return {cls:'success', icon:'👍', label:'合格！',     msg:'よくできました！もう一回だけお手本を確認しましょう。'};
+  if (score >= 0.35) return {cls:'retry',   icon:'🌱', label:'もう少し！', msg:'半分近くまで来ています。ゆっくりお手本を真似してみてください。'};
+  return               {cls:'retry',   icon:'💦', label:'もう一度挑戦！', msg:'まずは一語ずつ、お手本の後に続けてみましょう。'};
+}
+
+// --- 中国語：ピンイン＆カタカナ変換エンジン ---
+const TONE_TABLE = {'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i',
+                    'ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'v','ǘ':'v','ǚ':'v','ǜ':'v','ü':'v'};
+const PINYIN_FINALS = ['a','ai','an','ang','ao','e','ei','en','eng','er','o','ou','ong','u','ua','uai','uan','uang','ui','un','uo','ueng','i','ia','ian','iang','iao','ie','in','ing','iong','iu','ue','v','ve','van','vn'];
+const PINYIN_INITIALS = ['zh','ch','sh','b','p','m','f','d','t','n','l','g','k','h','j','q','x','r','z','c','s','y','w'];
+const PINYIN_SYL_SET = new Set(['zhi','chi','shi','ri','zi','ci','si']);
+PINYIN_FINALS.forEach(f => PINYIN_SYL_SET.add(f));
+PINYIN_INITIALS.forEach(i => PINYIN_FINALS.forEach(f => PINYIN_SYL_SET.add(i + f)));
+['jue','que','xue','jun','qun','xun'].forEach(s => PINYIN_SYL_SET.add(s));
+['yu','yue','yuan','yun'].forEach(s => PINYIN_SYL_SET.add(s));
+
+function stripPinyinTone(s){
+  let out = '';
+  for (const ch of s.toLowerCase()) out += TONE_TABLE[ch] || ch;
+  return out.replace(/[^a-zv]/g, '');
+}
+
+const KANA_SPECIAL = {zhi:'ジ',chi:'チ',shi:'シ',ri:'リ',zi:'ズ',ci:'ツ',si:'ス',er:'アール',
+                      niu:'ニュ',liu:'リュ',miu:'ミュ',diu:'ディウ',nv:'ニュ',lv:'リュ',nve:'ニュエ',lve:'リュエ',
+                      huo:'ホオ',yuan:'ユエン'};
+const KANA_ROWS = {
+  b:{a:'バ',i:'ビ',u:'ブ',e:'ベ',o:'ボ'}, p:{a:'パ',i:'ピ',u:'プ',e:'ペ',o:'ポ'},
+  m:{a:'マ',i:'ミ',u:'ム',e:'メ',o:'モ'}, f:{a:'ファ',i:'フィ',u:'フ',e:'フェ',o:'フォ'},
+  d:{a:'ダ',i:'ディ',u:'ドゥ',e:'デ',o:'ド'}, t:{a:'タ',i:'ティ',u:'トゥ',e:'テ',o:'ト'},
+  n:{a:'ナ',i:'ニ',u:'ヌ',e:'ネ',o:'ノ'}, l:{a:'ラ',i:'リ',u:'ル',e:'レ',o:'ロ'},
+  g:{a:'ガ',i:'ギ',u:'グ',e:'ゲ',o:'ゴ'}, k:{a:'カ',i:'キ',u:'ク',e:'ケ',o:'コ'},
+  h:{a:'ハ',i:'ヒ',u:'フ',e:'ヘ',o:'ホ'},
+  zh:{a:'ジャ',i:'ジ',u:'ジュ',e:'ジェ',o:'ジョ'}, ch:{a:'チャ',i:'チ',u:'チュ',e:'チェ',o:'チョ'},
+  sh:{a:'シャ',i:'シ',u:'シュ',e:'シェ',o:'ショ'},
+  r:{a:'ラ',i:'リ',u:'ル',e:'レ',o:'ロ'},
+  z:{a:'ザ',i:'ズ',u:'ズ',e:'ゼ',o:'ゾ'}, c:{a:'ツァ',i:'ツ',u:'ツ',e:'ツェ',o:'ツォ'},
+  s:{a:'サ',i:'ス',u:'ス',e:'セ',o:'ソ'},
+  j:{a:'ジャ',i:'ジ',u:'ジュ',e:'ジェ',o:'ジョ'}, q:{a:'チャ',i:'チ',u:'チュ',e:'チェ',o:'チョ'},
+  x:{a:'シャ',i:'シ',u:'シュ',e:'シェ',o:'ショ'},
+  y:{a:'ヤ',i:'イ',u:'ユ',e:'イエ',o:'ヨ'}, w:{a:'ワ',i:'ウィ',u:'ウ',e:'ウェ',o:'ウォ'}
+};
+const KANA_ZERO = {a:'ア',ai:'アイ',an:'アン',ang:'アン',ao:'アオ',e:'エ',ei:'エイ',en:'エン',eng:'エン',er:'アール',o:'オ',ou:'オウ'};
+
+function sylToKana(s){
+  if (KANA_SPECIAL[s]) return KANA_SPECIAL[s];
+  let ini = '';
+  for (const c of PINYIN_INITIALS){ if (s.startsWith(c)){ ini = c; break; } }
+  const fin = s.slice(ini.length);
+  const row = KANA_ROWS[ini];
+  if (!row) return KANA_ZERO[fin] || s;
+  const g3 = (ini === 'j' || ini === 'q' || ini === 'x');
+  switch (fin){
+    case 'a': case 'i': case 'u': case 'e': case 'o': return row[fin];
+    case 'ai': return row.a + 'イ';   case 'ei': return row.e + 'イ';
+    case 'ao': return row.a + 'オ';   case 'ou': return row.o + 'ウ';
+    case 'an': case 'ang': return row.a + 'ン';
+    case 'en': case 'eng': return row.e + 'ン';
+    case 'ong': return row.o + 'ン';
+    case 'ia': return row.i + 'ア';   case 'ie': return row.i + 'エ';
+    case 'iao': return row.i + 'ヤオ';
+    case 'ian': return g3 ? row.e + 'ン' : row.i + 'エン';
+    case 'iang': return ini === 'y' ? 'ヤン' : (g3 ? row.a + 'ン' : row.i + 'ャン');
+    case 'in': case 'ing': return row.i + 'ン';
+    case 'iong': return row.o + 'ン';
+    case 'iu': return row.o + 'ウ';
+    case 'ua': return row.u + 'ア';
+    case 'uai': return row.u + 'ァイ';
+    case 'uan': return g3 ? row.u + 'エン' : row.u + 'アン';
+    case 'uang': return row.u + 'アン';
+    case 'ui': return row.u + 'イ';
+    case 'un': return row.u + 'ン';
+    case 'uo': return row.u + 'オ';
+    case 'ue': return row.u + 'エ';
+    default: return row.a;
+  }
+}
+
+const ZH_CHAR = {
+  '您':'nin','好':'hao','晚':'wan','上':'shang','欢':'huan','迎':'ying','光':'guang','临':'lin',
+  '是':'shi','办':'ban','理':'li','入':'ru','住':'zhu','吗':'ma','请':'qing','这':'zhe','边':'bian','坐':'zuo',
+  '问':'wen','贵':'gui','姓':'xing','稍':'shao','等':'deng','一':'yi','下':'xia','我':'wo','可':'ke','以':'yi',
+  '看':'kan','的':'de','护':'hu','照':'zhao','先':'xian','生':'sheng','女':'nv','士':'shi','谢':'xie','复':'fu',
+  '印':'yin','片':'pian','刻':'ke','让':'rang','久':'jiu','了':'le','预':'yu','订':'ding','两':'liang','位':'wei',
+  '房':'fang','型':'xing','豪':'hao','华':'hua','大':'da','床':'chuang','没':'mei','有':'you','弄':'nong','错':'cuo',
+  '吧':'ba','次':'ci','需':'xu','要':'yao','使':'shi','用':'yong','停':'ting','车':'che','场':'chang','在':'zai',
+  '哪':'na','里':'li','呢':'ne','因':'yin','为':'wei','前':'qian','结':'jie','算':'suan','所':'suo','收':'shou',
+  '取':'qu','日':'ri','元':'yuan','费':'fei','将':'jiang','统':'tong','和':'he','券':'quan','退':'tui','之':'zhi',
+  '后':'hou','据':'ju','会':'hui','交':'jiao','给':'gei','确':'que','认':'ren','地':'di','址':'zhi','电':'dian',
+  '话':'hua','题':'ti','此':'ci','签':'qian','字':'zi','含':'han','酒':'jiu','廊':'lang','早':'zao','餐':'can',
+  '套':'tao','不':'bu','仅':'jin','宿':'su','都':'dou','楼':'lou','出':'chu','梯':'ti','接':'jie','来':'lai',
+  '介':'jie','绍':'shao','点':'dian','到':'dao','半':'ban','午':'wu','茶':'cha','时':'shi','间':'jian','准':'zhun',
+  '备':'bei','咖':'ka','红':'hong','心':'xin','鸡':'ji','尾':'wei','类':'lei','小':'xiao','食':'shi','注':'zhu',
+  '意':'yi','学':'xue','龄':'ling','儿':'er','童':'tong','无':'wu','法':'fa','进':'jin','说':'shuo','明':'ming',
+  '至':'zhi','发':'fa','直':'zhi','向':'xiang','口':'kou','处':'chu','工':'gong','作':'zuo','人':'ren','员':'yuan',
+  '报':'bao','号':'hao','名':'ming','空':'kong','调':'tiao','遥':'yao','控':'kong','器':'qi','浴':'yu','室':'shi',
+  '附':'fu','近':'jin','目':'mu','全':'quan','馆':'guan','运':'yun','行':'xing','冷':'leng','暖':'nuan','开':'kai',
+  '关':'guan','制':'zhi','源':'yuan','节':'jie','风':'feng','量':'liang','如':'ru','果':'guo','觉':'jue','得':'de',
+  '热':'re','或':'huo','禁':'jin','烟':'yan','吸':'xi','于':'yu','及':'ji','卡':'ka','线':'xian','网':'wang',
+  '络':'luo','账':'zhang','密':'mi','码':'ma','天':'tian','齐':'qi','漱':'shu','品':'pin','从':'cong','面':'mian',
+  '架':'jia','李':'li','已':'yi','经':'jing','送':'song','祝':'zhu','愉':'yu','快':'kuai'
+};
+function zhReading(text){
+  const kana = [], py = [];
+  for (const ch of text){
+    if (/\s/.test(ch)) continue;
+    const syl = ZH_CHAR[ch];
+    if (syl){ kana.push(sylToKana(syl)); py.push(syl); }
+    else if (/[a-zA-Z0-9]/.test(ch)){ kana.push(ch); py.push(ch); }
+  }
+  return { kana: kana.join(' '), pinyin: py.join(' ') };
+}
+
+// --- 韓国語：字母分解＆連音/鼻音化変換エンジン ---
+const H_CHO = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ";
+const H_JUNG = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
+const H_JONG = ["","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+const KO_ONSET = {'ㄱ':'ガ','ㄲ':'ッガ','ㄴ':'ナ','ㄷ':'ダ','ㄸ':'ッダ','ㄹ':'ラ','ㅁ':'マ','ㅂ':'バ','ㅃ':'ッバ','ㅅ':'サ','ㅆ':'ッサ','ㅇ':'','ㅈ':'ジ','ㅉ':'ッジ','ㅊ':'チ','ㅋ':'カ','ㅌ':'タ','ㅍ':'パ','ㅎ':'ハ'};
+const KO_WO = {'ㄱ':'グォ','ㄲ':'ックォ','ㄴ':'ヌォ','ㄷ':'ドゥォ','ㄸ':'ットォ','ㄹ':'ルォ','ㅁ':'ムォ','ㅂ':'ブォ','ㅃ':'ップォ','ㅅ':'スォ','ㅆ':'ッスォ','ㅇ':'ウォ','ㅈ':'ジュォ','ㅉ':'ッジュォ','ㅊ':'チュォ','ㅋ':'クォ','ㅌ':'トォ','ㅍ':'ポォ','ㅎ':'フゥォ'};
+const KO_VOWEL = {'ㅏ':'ア','ㅐ':'エ','ㅑ':'ヤ','ㅒ':'イェ','ㅓ':'オ','ㅔ':'エ','ㅕ':'ヨ','ㅖ':'イェ','ㅗ':'オ','ㅘ':'ワ','ㅙ':'ウェ','ㅚ':'ウェ','ㅛ':'ヨ','ㅜ':'ウ','ㅝ':'ヲ','ㅞ':'ウェ','ㅟ':'ウィ','ㅠ':'ユ','ㅡ':'ウ','ㅢ':'ウィ','ㅣ':'イ'};
+const KO_FINAL = {'':'','ㄱ':'ク','ㄲ':'ク','ㄳ':'ク','ㄴ':'ン','ㄵ':'ン','ㄶ':'ン','ㄷ':'ト','ㄹ':'ル','ㄺ':'ク','ㄻ':'ム','ㄼ':'ル','ㄽ':'ル','ㄾ':'ル','ㄿ':'ル','ㅀ':'ル','ㅁ':'ム','ㅂ':'プ','ㅄ':'プ','ㅅ':'ト','ㅆ':'ト','ㅇ':'ン','ㅈ':'ト','ㅊ':'ト','ㅋ':'ク','ㅌ':'ト','ㅍ':'プ','ㅎ':'ト'};
+
+function koWordToKana(word){
+  const syls = [];
+  for (const ch of word){
+    const o = ch.codePointAt(0);
+    if (o < 0xAC00 || o > 0xD7A3) continue;
+    const s = o - 0xAC00;
+    syls.push([H_CHO[Math.floor(s/588)], H_JUNG[Math.floor((s%588)/28)], H_JONG[s%28]]);
+  }
+  for (let i = 0; i < syls.length - 1; i++){
+    const f = syls[i][2], nc = syls[i+1][0];
+    if (f){
+      if (nc === 'ㅇ'){ syls[i+1][0] = f; syls[i][2] = ''; }
+      else if (nc === 'ㄴ' || nc === 'ㅁ'){
+        if ('ㅂㅍㅄㄿ'.includes(f)) syls[i][2] = 'ㅁ';
+        else if ('ㄷㅅㅆㅈㅊㅌㅎㄶㄵ'.includes(f)) syls[i][2] = 'ㄴ';
+        else if ('ㄱㄲㅋㄳㄺ'.includes(f)) syls[i][2] = 'ㅇ';
+      }
+    }
+  }
+  return syls.map(([c, v, f]) => {
+    const body = (v === 'ㅝ') ? KO_WO[c] : (KO_ONSET[c] + KO_VOWEL[v]);
+    return body + KO_FINAL[f];
+  }).join('');
+}
+function koReading(text){
+  return text.replace(/[가-힯]+/g, w => koWordToKana(w));
 }
 
 let currentScreen = 'start';
@@ -551,23 +700,28 @@ function playSpeech(text, langCode) {
   window.speechSynthesis.speak(utterance);
 }
 
+// iOS (Safari) 判定と音声認識の安全制御
 function testSpeechRecognition(expectedText, resultBoxId, btnId) {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const resultBox = document.getElementById(resultBoxId);
   const btn = document.getElementById(btnId);
 
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
   if (!SpeechRecognition) {
     if (resultBox) {
       resultBox.className = 'recognition-result-box retry';
-      resultBox.innerHTML = '🐳 くじらちゃん：お使いのブラウザは音声認識に対応していません。';
+      if (isIOS) {
+        resultBox.innerHTML = '🐳 くじらちゃん：iOS(Safari)環境ではWeb音声認識機能に制限があります。お手本音声を聞いて声に出して練習してみましょう！';
+      } else {
+        resultBox.innerHTML = '🐳 くじらちゃん：お使いのブラウザは音声認識に対応していません。ChromeかEdgeで開いてみてくださいね。';
+      }
     }
     return;
   }
 
   const recognition = new SpeechRecognition();
-  if (currentLang === 'zh') recognition.lang = 'zh-CN';
-  else if (currentLang === 'ko') recognition.lang = 'ko-KR';
-  else recognition.lang = 'en-US';
+  recognition.lang = (currentLang === 'zh') ? 'zh-CN' : (currentLang === 'ko') ? 'ko-KR' : 'en-US';
 
   if (btn) {
     btn.classList.add('recording');
@@ -576,42 +730,53 @@ function testSpeechRecognition(expectedText, resultBoxId, btnId) {
 
   recognition.onresult = function(event) {
     const speechResult = event.results[0][0].transcript;
-    if (resultBox) {
-      let rubyHtml = "";
-      if (currentLang === 'zh' || currentLang === 'ko') {
-        const rubyText = getRubyForRecognition(speechResult, currentLang);
-        if (rubyText) {
-          rubyHtml = `<br>📖 <strong>読み方:</strong> <span class="recognized-ruby">${rubyText}</span>`;
-        }
-      }
-
-      resultBox.className = 'recognition-result-box success';
-      resultBox.innerHTML = `
-        <strong>✨ 判定完了！</strong><br>
-        認識された言葉: <span class="recognized-text-display">${speechResult}</span>${rubyHtml}<br>
-        🐳 くじらちゃん：素晴らしい発音です！自信が伝わってきますね。
-        <div class="recognition-note">※音声判定はブラウザ機能を利用した目安です。</div>
-      `;
-    }
+    showJudgement(expectedText, speechResult, resultBox);
     resetButtonState(btn);
   };
-
-  recognition.onerror = function() {
+  recognition.onerror = function(e) {
     if (resultBox) {
       resultBox.className = 'recognition-result-box retry';
-      resultBox.innerHTML = '🐳 くじらちゃん：音声をうまく拾えませんでした。ゆっくりハッキリ話してみてくださいね。<div class="recognition-note">※音声判定はブラウザ機能を利用した目安です。</div>';
+      if (isIOS) {
+        resultBox.innerHTML = '🐳 くじらちゃん：iOSの音声入力制限のため認識できませんでした。お手本に合わせて発音してみましょう！<div class="recognition-note">※音声認識結果に基づく参考判定です。</div>';
+      } else {
+        resultBox.innerHTML = '🐳 くじらちゃん：音声をうまく拾えませんでした。ゆっくりハッキリ話してみてくださいね。<div class="recognition-note">※音声認識結果に基づく参考判定です。</div>';
+      }
     }
     resetButtonState(btn);
   };
-
   recognition.onend = function() { resetButtonState(btn); };
   try { recognition.start(); } catch (e) { resetButtonState(btn); }
+}
+
+function showJudgement(expected, actual, resultBox) {
+  if (!resultBox) return;
+  const score = similarityScore(expected, actual);
+  const g = gradeResult(score);
+  const pct = Math.round(score * 100);
+
+  let rubyHtml = '';
+  if (currentLang === 'zh') {
+    const r = zhReading(actual);
+    if (r.kana) rubyHtml = `<br>📖 <strong>読み方:</strong> <span class="recognized-ruby">${escapeHtml(r.kana)}</span> <span class="pinyin-text">(${escapeHtml(r.pinyin)})</span>`;
+  } else if (currentLang === 'ko') {
+    const k = koReading(actual);
+    rubyHtml = `<br>📖 <strong>読み方:</strong> <span class="recognized-ruby">${escapeHtml(k)}</span>`;
+  }
+
+  resultBox.className = 'recognition-result-box ' + g.cls;
+  resultBox.innerHTML = `
+    <strong>${g.icon} ${g.label}</strong>（一致度 ${pct}%）<br>
+    お手本: <span class="recognized-text-display">${escapeHtml(normalizeForCompare(expected))}</span><br>
+    認識結果: <span class="recognized-text-display">${escapeHtml(actual)}</span>${rubyHtml}<br>
+    🐳 くじらちゃん：${g.msg}
+    <div class="recognition-note">※音声認識結果に基づく参考判定です。端末環境によって精度が変わります。</div>
+  `;
 }
 
 function resetButtonState(btn) {
   if (!btn) return;
   btn.classList.remove('recording');
-  btn.innerHTML = btn.dataset.type === 'target' ? '🎙️ 発音をテストする' : '🎙️ 発音を返してみる';
+  btn.innerHTML = btn.dataset.type === 'target' ? '🎙️ 発音テスト' : '🎙️ 発音を試す';
 }
 
 function startSimulation(course, lang) {
@@ -645,7 +810,7 @@ function renderApp() {
         </div>
 
         <div class="course-card">
-          <div class="course-title">🛎️ フロント・チェックイン業務コース (3言語対応)</div>
+          <div class="course-title">🛎️ フロント・チェックイン業務コース (3言語対応・全38ステップ)</div>
           <button class="lang-btn" onclick="startSimulation('front', 'en')">
             <span>🇬🇧 英語 (English)</span><span>➔</span>
           </button>
@@ -658,7 +823,7 @@ function renderApp() {
         </div>
 
         <div class="course-card">
-          <div class="course-title">☕ ラウンジ・朝食スタッフ業務コース (英語専用)</div>
+          <div class="course-title">☕ ラウンジ・朝食スタッフ業務コース (英語専用・全15ステップ)</div>
           <button class="lang-btn" onclick="startSimulation('lounge', 'en')">
             <span>🇬🇧 英語 (English) シミュレーション</span><span>➔</span>
           </button>
@@ -727,7 +892,7 @@ function renderApp() {
       <div class="dialogue-box">
         <div class="speaker-header">
           <div class="speaker-label">スタッフのご案内 (日本語)</div>
-          <button class="speech-btn" onclick="playSpeech(decodeURIComponent('${encodeURIComponent(currentStep.jp)}'), 'ja-JP')">🔊 音声を聞く</button>
+          <button class="speech-btn" onclick="playSpeech(decodeURIComponent('${enc(currentStep.jp)}'), 'ja-JP')">🔊 音声を聞く</button>
         </div>
         <div class="japanese-text">${currentStep.jp.replace(/\n/g, '<br>')}</div>
         
@@ -737,8 +902,8 @@ function renderApp() {
               <div class="speaker-header">
                 <div class="speaker-label">${transLabel}</div>
                 <div class="button-group">
-                  <button class="speech-btn" onclick="playSpeech(decodeURIComponent('${encodeURIComponent(targetText)}'), '${langCode}')">🔊 お手本を聞く</button>
-                  <button class="speech-btn rec-btn" id="rec-btn-target" data-type="target" onclick="testSpeechRecognition(decodeURIComponent('${encodeURIComponent(targetText)}'), 'result-target', 'rec-btn-target')">🎙️ 発音テスト</button>
+                  <button class="speech-btn" onclick="playSpeech(decodeURIComponent('${enc(targetText)}'), '${langCode}')">🔊 お手本を聞く</button>
+                  <button class="speech-btn rec-btn" id="rec-btn-target" data-type="target" onclick="testSpeechRecognition(decodeURIComponent('${enc(targetText)}'), 'result-target', 'rec-btn-target')">🎙️ 発音テスト</button>
                 </div>
               </div>
               <div class="translation-text">"${targetText.replace(/\n/g, '<br>')}"</div>
@@ -760,8 +925,8 @@ function renderApp() {
         <div class="customer-header">
           <div class="customer-label">お客様の返答:</div>
           <div class="button-group">
-            <button class="speech-btn" onclick="playSpeech(decodeURIComponent('${encodeURIComponent(customerText)}'), '${langCode}')">🔊 発音を聞く</button>
-            <button class="speech-btn rec-btn" id="rec-btn-cust" data-type="cust" onclick="testSpeechRecognition(decodeURIComponent('${encodeURIComponent(customerText)}'), 'result-cust', 'rec-btn-cust')">🎙️ 発音を試す</button>
+            <button class="speech-btn" onclick="playSpeech(decodeURIComponent('${enc(customerText)}'), '${langCode}')">🔊 発音を聞く</button>
+            <button class="speech-btn rec-btn" id="rec-btn-cust" data-type="cust" onclick="testSpeechRecognition(decodeURIComponent('${enc(customerText)}'), 'result-cust', 'rec-btn-cust')">🎙️ 発音を試す</button>
           </div>
         </div>
         <div class="customer-phrase">"${customerText}"</div>
@@ -818,8 +983,9 @@ function openNoticeModal() {
         <div style="font-size: 0.9rem; line-height: 1.6; color: var(--text-main);">
           <p style="margin-top:0;"><strong>【RoHLL アプリへようこそ】</strong></p>
           <ul style="padding-left: 18px; margin-bottom: 0;">
-            <li>音声認識の読み方ガイドがフレーズ末尾まで正確に表示されるよう改善しました！</li>
-            <li>フロント業務（35ステップ）とラウンジ・朝食業務（15ステップ）対応。</li>
+            <li>音声一致度スコア（%表示）と、聴き取られた言葉の「自然な読みカナ（ピンイン・カタカナ）」フィードバックを統合搭載しました！</li>
+            <li>「絶対的な発音判定」ではなく「参考判定」として、学習者の自発的な声出しを温かくサポートします。</li>
+            <li>フロント業務コース全38ステップ／ラウンジ業務コース全15ステップに対応。</li>
           </ul>
         </div>
         <button class="submit-btn" onclick="closeModal()" style="margin-top: 10px;">閉じる</button>

@@ -57,16 +57,19 @@
       align-items: center;
     }
     header h1 {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       margin: 0;
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
     }
     .progress-text {
       font-size: 0.85rem;
       opacity: 0.95;
       font-weight: 600;
       color: #fef3c7;
+      white-space: nowrap;
+      margin-left: 10px;
     }
     .progress-bar-container {
       height: 6px;
@@ -456,7 +459,7 @@ const frontSteps = [
   { jp: "こちらが駐車券です。\nチェックアウトの後にご利用下さい。", en: "Here is your parking ticket.\nPlease use this after you check out.", zh: "这是您的停车券，请在退房之后使用。", ko: "주차권입니다. 체크아웃 후에 사용해 주십시오.", pinyin: "Zhè shì nín de tíngchēquàn...", kana: "ヂェ シ ニン ダ ティンチェチュェン...", kanaKo: "ジュチャグォニムニダ。チェックアウト フエ サヨンヘ ジュシプシオ。", customerEn: "Thank you.", customerZh: "谢谢。", customerKo: "감사합니다.", feedback: "駐車券のお渡しです。" },
   { jp: "領収証は要りますか？", en: "Will you need a receipt?", zh: "请问您需要收据吗？", ko: "영수증이 필요하십니까?", pinyin: "Qǐngwèn nín xūyào shōujù ma?", kana: "チンウェン ニン シューヤオ ショウヂュ マ？", kanaKo: "ヨンスジュンイ ピリョハシムニカ？", customerEn: "Yes, please.", customerZh: "是的，请给我一张。", customerKo: "네, 부탁드립니다.", feedback: "領収証の有無を確認します。" },
   { jp: "領収証はチェックアウトの時に渡します。", en: "I will hand you the receipt upon check-out.", zh: "收据会在退房时交给您。", ko: "영수증은 체크아웃 하실 때 드리겠습니다.", pinyin: "Shōujù huì zài tuìfáng shí...", kana: "ショウヂュ フゥイ ザイ トゥイファン シ...", kanaKo: "ヨンスジュンウン チェックアウト ハシル テ ドゥリゲッスムニダ。", customerEn: "Okay, thank you.", customerZh: "好的，谢谢。", customerKo: "네, 감사합니다.", feedback: "渡すタイミングのお伝えです。" },
-  { jp: "それではこちらに記載の住所、電話番号に間違いが無ければこちらにサインをお願いいたします。", en: "If your address and phone number shown here are correct, please sign here, please.", zh: "请确认这里的地址和电话，没问题的话请在此签字。", ko: "주소와 전화번호가 맞으시면 이곳에 서명해 주십시오.", pinyin: "Qǐng quèrèn zhèlǐ de dìzhǐ...", kana: "チン チュエレン ヂェリ ダ ディージ...", kanaKo: "ジュソワ ジョナボノガ マジュシミョン イゴセ ソミョンヘ ジュシプシオ。", customerEn: "Sure.", customerZh: "好的。", customerKo: "네, 알겠습니다.", feedback: "ご署名をいただくステップです。" },
+  { jp: "それではこちらに記載の住所、電話番号に間違いが無ければこちらにサインをお願いいたします。", en: "If your address and phone number shown here are correct, please sign here.", zh: "请确认这里的地址和电话，没问题的话请在此签字。", ko: "주소와 전화번호가 맞으시면 이곳에 서명해 주십시오.", pinyin: "Qǐng quèrèn zhèlǐ de dìzhǐ...", kana: "チン チュエレン ヂェリ ダ ディージ...", kanaKo: "ジュソワ ジョナボノガ マジュシミョン イゴセ ソミョンヘ ジュシプシオ。", customerEn: "Sure.", customerZh: "好的。", customerKo: "네, 알겠습니다.", feedback: "ご署名をいただくステップです。" },
   { jp: "今回はラウンジ、朝食付きプランでご予約をいただいております。", en: "You have booked a plan that includes lounge access and breakfast.", zh: "您这次预订的是含酒廊和早餐的套餐。", ko: "이번에는 라운지와 조식이 포함된 플랜으로 예약하셨습니다.", pinyin: "Nín zhècì yùdìng de shì...", kana: "ニン ヂェツー ユーディン ダ シ...", kanaKo: "イボネヌン ラウンジワ ジョシギ ポハムデン プルレヌロ イェヤクハシャッスムニダ。", customerEn: "Great, looking forward to it!", customerZh: "太好了，非常期待！", customerKo: "좋네요, 기대됩니다!", feedback: "ワクワクしていただけるご案内です。" },
   { jp: "今回は素泊まりプランでご予約をいただいております。", en: "You have booked a room-only plan.", zh: "您这次预订的是不含餐（仅住宿）的套餐。", ko: "이번에는 객실만 이용하시는 플랜으로 예약하셨습니다.", pinyin: "Nín zhècì yùdìng de shì...", kana: "ニン ヂェツー ユーディン ダ シ...", kanaKo: "イボネヌン ケクシルマン イヨンハシヌン プルレヌロ イェヤクハシャッスムニダ。", customerEn: "Understood, thank you.", customerZh: "明白了，谢谢。", customerKo: "알겠습니다. 감사합니다.", feedback: "プランの事前確認です。" },
   { jp: "朝食及びラウンジ会場は共に4階のエレベーターを降りてすぐにあるsilkです。", en: "Both the breakfast and lounge area is 'silk', located right by the elevator on the 4th floor.", zh: "早餐和酒廊都在4楼出电梯后的「silk」。", ko: "조식 및 라운지 장소는 모두 4층 silk입니다.", pinyin: "Zǎocān hé jiǔláng dōu zài...", kana: "ザオツァン ハ ジョウラン ドウ ザイ...", kanaKo: "ジョシク ミッ ラウンジ チャンソヌン モドゥ サチュン シルク イムニダ。", customerEn: "Got it, thank you.", customerZh: "知道了，谢谢。", customerKo: "알겠습니다. 감사합니다.", feedback: "会場場所のご案内です。" },
@@ -489,7 +492,7 @@ const loungeSteps = [
   { jp: "始めにメインのプレートを和食か洋食で決めて下さい。", en: "First, please choose your main plate from either Japanese or Western style.", customerEn: "I'd like the Western style, please.", feedback: "メインプレートのご選択をお伺いします。" },
   { jp: "その後にサラダやフルーツ、ドリンクなどお好きなものを自分で取りに行くハーフブッフェです。", en: "After that, you can enjoy our half-buffet for salads, fruits, and drinks.", customerEn: "Sounds wonderful!", feedback: "ハーフブッフェ形式のご説明です。" },
   { jp: "和食ですね？ご飯かお粥でしたらどちらが良いでしょうか？", en: "Japanese style, certainly. Would you prefer steamed rice or rice porridge?", customerEn: "Steamed rice, please.", feedback: "和食のご飯・お粥の選択肢です。" },
-  { jp: "洋食ですね？玉子料理を選んで下さい。\nプレーンオムレツ、目玉焼き、スクランブルエッグがあります。", en: "Western style, certainly. Please choose your egg dish: Plain Omlet, Fried Eggs, or Scrambled Eggs.", customerEn: "Fried eggs, please.", feedback: "卵料理の選択肢を丁寧にご提示します。" },
+  { jp: "洋食ですね？玉子料理を選んで下さい。\nプレーンオムレツ、目玉焼き、スクランブルエッグがあります。", en: "Western style, certainly. Please choose your egg dish: Plain Omelet, Fried Eggs, or Scrambled Eggs.", customerEn: "Fried eggs, please.", feedback: "卵料理の選択肢を丁寧にご提示します。" },
   { jp: "目玉焼きの焼き加減はどうしますか?\n半熟、完熟、両面焼きがあります。", en: "How would you like your fried eggs cooked?\nOver easy, hard, or over well?", customerEn: "Over easy, please.", feedback: "焼き加減のご希望をお伺いします。" },
   { jp: "ブッフェコーナーにはパンもありますが洋食プレートにも小さなトーストが2枚ついています。", en: "There are breads at the buffet, but the Western plate also comes with two small toasts.", customerEn: "Oh, good to know! Thanks.", feedback: "プレートに付属するトーストのご親切案内です。" },
   { jp: "承知しました。ブッフェは和食洋食関係なく全て取ることが出来ます。\nそれではどうぞお好きな物をお取り下さい。", en: "Certainly. You can take anything from the buffet regardless of your main plate. Please enjoy yourself!", customerEn: "Thank you!", feedback: "ブッフェを楽しんでいただく温かい一言です。" },
@@ -795,14 +798,14 @@ function renderApp() {
   if (currentScreen === 'start') {
     app.innerHTML = `
       <header>
-        <h1>RoHLL ‒ Royal Hospitality</h1>
+        <h1>RoHLL ‒ Royal Hospitality Language Learning</h1>
         <span class="progress-text">Welcome</span>
       </header>
       <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
       <div class="content">
         <div class="whale-comfort">
           <span class="whale-icon">🐳</span>
-          <span>くじらちゃん：いつも熱心にお仕事やアプリ開発に向き合われているnaruさん、本当にお疲れ様です。今日も楽しく練習していきましょうね。</span>
+          <span>くじらちゃん：今日もおもてなしの学習、本当にお疲れ様です！一つひとつの言葉を楽しみながら声に出して練習していきましょうね。</span>
         </div>
 
         <div style="text-align: center; margin: 6px 0;">
@@ -851,7 +854,7 @@ function renderApp() {
       <div class="content" style="text-align: center; padding: 30px 20px;">
         <div class="whale-comfort" style="margin-bottom: 20px;">
           <span class="whale-icon">🐳</span>
-          <span>すべての接客ステップが完了しました！素晴らしい努力ですね！</span>
+          <span>すべての接客ステップが完了しました！素晴らしい努力ですね！本当にお疲れ様でした。</span>
         </div>
         <h2>All Steps Completed!</h2>
         <button class="nav-btn primary" onclick="restartSimulation()" style="padding: 10px 24px;">コース選択に戻る</button>
@@ -879,7 +882,7 @@ function renderApp() {
 
   app.innerHTML = `
     <header>
-      <h1>${currentCourse === 'lounge' ? 'ラウンジ・朝食' : 'フロント'}${langName}シミュレーター</h1>
+      <h1>${currentCourse === 'lounge' ? 'ラウンジ' : 'フロント'}${langName} ‒ RoHLL</h1>
       <span class="progress-text">Step ${currentIndex + 1} / ${steps.length}</span>
     </header>
     <div class="progress-bar-container"><div class="progress-bar" style="width: ${progressPercent}%;"></div></div>
@@ -983,9 +986,9 @@ function openNoticeModal() {
         <div style="font-size: 0.9rem; line-height: 1.6; color: var(--text-main);">
           <p style="margin-top:0;"><strong>【RoHLL アプリへようこそ】</strong></p>
           <ul style="padding-left: 18px; margin-bottom: 0;">
-            <li>音声一致度スコア（%表示）と、聴き取られた言葉の「自然な読みカナ（ピンイン・カタカナ）」フィードバックを統合搭載しました！</li>
+            <li>音声一致度スコア（%表示）と、聴き取られた言葉の「自然な読みカナ（ピンイン・カタカナ）」フィードバックを搭載しています。</li>
             <li>「絶対的な発音判定」ではなく「参考判定」として、学習者の自発的な声出しを温かくサポートします。</li>
-            <li>フロント業務コース全38ステップ／ラウンジ業務コース全15ステップに対応。</li>
+            <li>フロント業務コース全38ステップ／ラウンジ業務コース全15ステップに対応しています。</li>
           </ul>
         </div>
         <button class="submit-btn" onclick="closeModal()" style="margin-top: 10px;">閉じる</button>
@@ -1033,3 +1036,4 @@ renderApp();
 </script>
 </body>
 </html>
+
